@@ -1,0 +1,7 @@
+"0","#| label: w2_read_csv_data"
+"0","#| message: FALSE"
+"0","library(dplyr)"
+"0","library(readr)"
+"0","library(here)"
+"0","girls <- read_csv(here(""_Data"", ""GirlsNames.csv""))"
+"0","head(girls, 10)"

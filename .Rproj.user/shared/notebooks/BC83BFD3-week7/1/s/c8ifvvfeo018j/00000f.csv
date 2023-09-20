@@ -1,0 +1,5 @@
+"0","#| label: w7_pet_colour"
+"0","pet_colour <- "
+"0","  xpets %>% "
+"0","  xml_find_all("".//pet/colour"") %>% "
+"0","  xml_text()"

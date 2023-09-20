@@ -1,0 +1,2 @@
+"0","#| label: w7_check_understanding1"
+"0","jstarwars <- toJSON(starwars, pretty = TRUE)"

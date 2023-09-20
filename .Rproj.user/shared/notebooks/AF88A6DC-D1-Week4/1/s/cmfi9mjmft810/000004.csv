@@ -1,0 +1,8 @@
+"0","library(stringr)"
+"0","target <- ""Paul wrote this in 2020."""
+"0","target %>% "
+"0","  str_detect(""Paul"")"
+"1","[1]"
+"1"," TRUE"
+"1","
+"

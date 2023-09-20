@@ -1,0 +1,37 @@
+project:
+  type: book
+  output-dir: _notes
+
+book:
+  title: "Fundamentals of Data Science"
+  author: "Paul King"
+  date: "17 October 2022"
+  chapters:
+    - index.qmd
+    - week1.qmd
+    - week2.qmd
+    - week3.qmd
+    - week4.qmd
+    - week5.qmd
+    - week6.qmd
+    - week7.qmd
+    - week8.qmd
+    - week9.qmd
+    - week10.qmd
+    - references.qmd
+
+number-depth: 2
+
+bibliography: [Z2-book.bib, Z3-packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "These are the course notes for the 2022 version of Fundamentals of Data Science (MA7419 / MA3419)"
+
+format:
+  html:
+    theme: cosmo
+    link-external-icon: true
+    link-external-newwindow: true
+  pdf:
+    documentclass: scrreprt
+    papersize: A4

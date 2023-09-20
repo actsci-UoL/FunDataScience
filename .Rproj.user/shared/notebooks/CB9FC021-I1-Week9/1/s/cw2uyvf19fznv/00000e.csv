@@ -1,0 +1,5 @@
+"0","## search for tweets using the Cardano hashtag"
+"0","rt <- search_tweets(""#Cardano"", n = 100, include_rts = FALSE)"
+"0",""
+"0","## preview tweets data"
+"0","rt %>% select(id, text)"

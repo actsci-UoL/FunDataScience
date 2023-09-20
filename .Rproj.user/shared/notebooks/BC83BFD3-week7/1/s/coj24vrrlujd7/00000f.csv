@@ -1,0 +1,8 @@
+"0","#| label: w7_check_understanding2"
+"0","dfstarwars <- fromJSON(jstarwars)"
+"0",""
+"0","identical(starwars, dfstarwars)"
+"1","[1]"
+"1"," FALSE"
+"1","
+"

@@ -1,0 +1,41 @@
+# Final reports
+
+## Overview
+
+In Week 10 you will be submitting your final reports.
+
+## Citing R and packages
+
+The underlying programme is clearly a massive piece of work and you should give its authors credit by citing them in any work you do using R.
+
+For example you might write:
+
+> Statistical analysis was done using R 4.1.1 [@R-base].
+
+R makes it easy to generate the right reference to use because there's a built-in function to do it.
+
+```{r}
+#| label: w10_cite
+citation()
+```
+
+You should also cite the main packages you've used. For example:
+
+> Data wrangling was carried out with `dplyr` [@R-dplyr] and other packages from the `tidyverse` [@tidyverse]; graphs were plotted using `ggplot2` [@R-ggplot2].
+
+Again, you can use `citation` to generate the correct references. For example:
+
+```{r}
+#| label: w10_cite2
+citation('dplyr')
+```
+
+If you are wondering, `BibTeX` is a file format (and software) used to describe lists of references, often for use within LaTeX documents. The `rmarkdown` package [@rmarkdown2018] provides methods to work with BibTeX references.
+
+### What to cite?
+
+You should always cite R itself, but there is an element of judgement in deciding which individual packages to cite. For this module, you won't lose marks as long as you have made a reasonable effort.
+
+To make your work fully reproducible it is best practice to list all the packages you've used (e.g. in an appendix). You can generate the necessary information with the function `sessionInfo()`, but this is not necessary for FDS coursework.
+
+

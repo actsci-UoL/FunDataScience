@@ -1,0 +1,6 @@
+"0","tidy_df <- "
+"0","  tibble(Name = rep(c(""Tiddles"", ""Rover""), 3),"
+"0","                  Test = rep(1:3, each = 2),"
+"0","                  Score = rnorm(6))"
+"0","                  "
+"0","tidy_df"

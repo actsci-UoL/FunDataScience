@@ -1,0 +1,8 @@
+"0","library(rtweet)"
+"0","## authenticate - insert your app name and keys below"
+"0","token <- create_token("
+"0","  app = ""R camlad"","
+"0","  consumer_key = api_key,"
+"0","  consumer_secret = api_secret_key,"
+"0","  access_token = access_token,"
+"0","  access_secret = access_token_secret)"

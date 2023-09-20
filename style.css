@@ -1,0 +1,37 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+div.ConChk {
+  padding: 1em;
+  background: aliceblue;
+  color: black;
+}
+
+div.ConChk > h3 {
+  color: blue;
+}
+
+div.ConChk > h4 {
+  color: darkblue;
+}
+
+div.ConChk > details {
+  margin-bottom: 20px;
+  background-color: lightgray;
+}
+
+div.ConChk > details > summary {
+  color: mediumblue;
+}

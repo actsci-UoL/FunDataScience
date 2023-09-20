@@ -1,0 +1,758 @@
+{
+    "sources": [
+        {
+            "URL": "https://bookdown.org/rdpeng/rprogdatascience/",
+            "author": [
+                {
+                    "family": "Peng",
+                    "given": "Roger D"
+                }
+            ],
+            "id": "pengRP4DS",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "publisher": "Lulu.com",
+            "publisher-place": "Morrisville",
+            "title": "R programming for data science",
+            "type": "book"
+        },
+        {
+            "URL": "https://leanpub.com/reportwriting",
+            "author": [
+                {
+                    "family": "Peng",
+                    "given": "Roger D."
+                }
+            ],
+            "id": "pengRWDSR",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "publisher": "Leanpub",
+            "publisher-place": "British Columbia, Canada",
+            "title": "Report writing for data science in r",
+            "type": "book"
+        },
+        {
+            "ISBN": "1491981652",
+            "URL": "https://www.tidytextmining.com/index.html",
+            "author": [
+                {
+                    "family": "Julia",
+                    "given": "PhD Silge"
+                },
+                {
+                    "family": "David",
+                    "given": "PhD Robinson"
+                }
+            ],
+            "id": "silgeTTM",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "publisher": "O’Reilly Media",
+            "title": "Text mining with r: A tidy approach",
+            "title-short": "Text mining with r",
+            "type": "book"
+        },
+        {
+            "URL": "http://r4ds.had.co.nz/",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "id": "wickhamR4DS",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "publisher": "O’Reilly Media",
+            "title": "R for data science: Import, tidy, transform, visualize, and model data",
+            "title-short": "R for data science",
+            "type": "book"
+        },
+        {
+            "URL": "https://r-graphics.org/",
+            "author": [
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                }
+            ],
+            "id": "changRGC",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "publisher": "O’Reilly Media",
+            "title": "R graphics cookbook",
+            "type": "book"
+        },
+        {
+            "URL": "https://geocompr.robinlovelace.net/",
+            "author": [
+                {
+                    "family": "Robin Lovelace",
+                    "given": "Jannes Muenchow",
+                    "suffix": "Jakub Nowosad"
+                }
+            ],
+            "id": "lovelaceGR",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "publisher": "CRC Press",
+            "title": "Geocomputation with r",
+            "type": "book"
+        },
+        {
+            "ISBN": "9780596528126",
+            "author": [
+                {
+                    "family": "Friedl",
+                    "given": "Jeffrey E. F"
+                }
+            ],
+            "edition": "3rd ed..",
+            "id": "FriedlMRE",
+            "issued": {
+                "date-parts": [
+                    [
+                        2006
+                    ]
+                ]
+            },
+            "keyword": "Text processing (Computer science); Perl (Computer program language); Computer programming; g Electronic data processing; Coding theory; g Scripting languages (Computer science); g Database management; g Electronic data processing; g Information storage and retrieval systems; Word processing",
+            "publisher": "O’Reilly",
+            "publisher-place": "Sebastapol, Calif.",
+            "title": "Mastering regular expressions",
+            "type": "book"
+        },
+        {
+            "URL": "https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf",
+            "author": [
+                {
+                    "dropping-particle": "de",
+                    "family": "Jonge",
+                    "given": "E."
+                },
+                {
+                    "dropping-particle": "van der",
+                    "family": "Loo",
+                    "given": "M."
+                }
+            ],
+            "collection-title": "Discussion paper / statistics netherlands",
+            "id": "deJongeIDCR",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "publisher": "Statistics Netherlands",
+            "title": "An introduction to data cleaning with r",
+            "type": "report"
+        },
+        {
+            "URL": "https://www.actuaries.org.uk/system/files/field/document/An%20Ethical%20Charter%20for%20Date%20Science%20WEB%20FINAL.PDF",
+            "author": [
+                {
+                    "family": "IFoA"
+                },
+                {
+                    "family": "RSS"
+                }
+            ],
+            "id": "IFoAGEDA",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "publisher": "Institute; Faculty of Actuaries; Royal Statistical Society",
+            "title": "A guide to ethical data science",
+            "type": "report"
+        },
+        {
+            "URL": "http://www2.compute.dtu.dk/pubdb/pubs/6010-full.html",
+            "abstract": "AFINNAFINN is a list of English words rated for valence with an integer between minus five (negative) and plus five (positive). The words have been manually labeled by Finn ÅÅrup Nielsen in 2009-2011. The file is tab-separated. There are two versions:AFINN-AFINN-111: Newest version with 2477 words and phrases.AFINN-AFINN-96: 1468 unique words and phrases on 1480 lines. Note that there are 1480 lines, as some words are listed twice. The word list in not entirely in alphabetic ordering.An evaluation of the word list is available in:Finn ÅÅrup Nielsen ”A”A new ANEWANEW: Evaluation of a word list for sentiment analysis in microblogs”,”, Proceedings of the ESWC2011 Workshop on ’Making Sense of Microposts’: Big things come in small packages 718 in CEURCEUR Workshop Proceedings : 93-98. 2011 May. http://arxiv.org/abs/1103.2903If you are a scientist I hope you would reference the above paper if you use it in your paper. The list was also used in:Lars Kai Hansen, Adam Arvidsson, Finn ÅÅrup Nielsen, Elanor Colleoni, Michael Etter, ””Good Friends, Bad News - Affect and Virality in Twitter”,”, The 2011 International Workshop on Social Computing, Network, and Services (SocialComNet 2011).This database of words is copyright protected and distributed under ””Open Database License (ODbL) v1.0”0” http://www.opendatacommons.org/licenses/odbl/1.0/ or a similar copyleft license.",
+            "author": [
+                {
+                    "dropping-particle": "Å.",
+                    "family": "Nielsen",
+                    "given": "F."
+                }
+            ],
+            "id": "AFINN",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011,
+                        3
+                    ]
+                ]
+            },
+            "keyword": "word list, sentiment analysis, opinion mining, text mining",
+            "publisher": "Informatics; Mathematical Modelling, Technical University of Denmark",
+            "publisher-place": "Richard Petersens Plads, Building 321, DK-2800 Kgs. Lyngby",
+            "title": "AFINN",
+            "type": ""
+        },
+        {
+            "URL": "https://www.R-project.org/",
+            "author": [
+                {
+                    "literal": "R Core Team"
+                }
+            ],
+            "id": "R-base",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "publisher": "R Foundation for Statistical Computing",
+            "publisher-place": "Vienna, Austria",
+            "title": "R: A language and environment for statistical computing",
+            "title-short": "R",
+            "type": "book"
+        },
+        {
+            "URL": "http://www.posit.co/",
+            "author": [
+                {
+                    "literal": "Posit team"
+                }
+            ],
+            "id": "RStudio",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "publisher": "Posit Software, PBC",
+            "publisher-place": "Boston, MA",
+            "title": "RStudio: Integrated development environment for r",
+            "title-short": "RStudio",
+            "type": "book"
+        },
+        {
+            "URL": "https://github.com/rstudio/bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-bookdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 0.35",
+            "title": "Bookdown: Authoring books and technical documents with r markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=dplyr",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "François",
+                    "given": "Romain"
+                },
+                {
+                    "family": "Henry",
+                    "given": "Lionel"
+                },
+                {
+                    "family": "Müller",
+                    "given": "Kirill"
+                },
+                {
+                    "family": "Vaughan",
+                    "given": "Davis"
+                }
+            ],
+            "id": "R-dplyr",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 1.1.3",
+            "title": "Dplyr: A grammar of data manipulation",
+            "title-short": "Dplyr",
+            "type": "book"
+        },
+        {
+            "ISBN": "978-3-319-24277-4",
+            "URL": "https://ggplot2.tidyverse.org",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                }
+            ],
+            "id": "R-ggplot2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "Springer-Verlag New York",
+            "title": "ggplot2: Elegant graphics for data analysis",
+            "title-short": "ggplot2",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "R-knitr",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 1.44",
+            "title": "Knitr: A general-purpose package for dynamic report generation in r",
+            "title-short": "Knitr",
+            "type": "book"
+        },
+        {
+            "URL": "https://github.com/rstudio/rmarkdown",
+            "author": [
+                {
+                    "family": "Allaire",
+                    "given": "JJ"
+                },
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Dervieux",
+                    "given": "Christophe"
+                },
+                {
+                    "family": "McPherson",
+                    "given": "Jonathan"
+                },
+                {
+                    "family": "Luraschi",
+                    "given": "Javier"
+                },
+                {
+                    "family": "Ushey",
+                    "given": "Kevin"
+                },
+                {
+                    "family": "Atkins",
+                    "given": "Aron"
+                },
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Cheng",
+                    "given": "Joe"
+                },
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                },
+                {
+                    "family": "Iannone",
+                    "given": "Richard"
+                }
+            ],
+            "id": "R-rmarkdown",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 2.25",
+            "title": "Rmarkdown: Dynamic documents for r",
+            "title-short": "Rmarkdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://CRAN.R-project.org/package=RSQLite",
+            "author": [
+                {
+                    "family": "Müller",
+                    "given": "Kirill"
+                },
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "James",
+                    "given": "David A."
+                },
+                {
+                    "family": "Falcon",
+                    "given": "Seth"
+                }
+            ],
+            "id": "R-RSQLite",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "R package version 2.3.1",
+            "title": "RSQLite: ’SQLite’ interface for r",
+            "title-short": "RSQLite",
+            "type": "book"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/bookdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "id": "bookdown2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1138700109",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Bookdown: Authoring books and technical documents with R markdown",
+            "title-short": "Bookdown",
+            "type": "book"
+        },
+        {
+            "URL": "https://yihui.org/knitr/",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "edition": "2nd",
+            "id": "knitr2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1498716963",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "Dynamic documents with R and knitr",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                }
+            ],
+            "container-title": "Implementing reproducible computational research",
+            "editor": [
+                {
+                    "family": "Stodden",
+                    "given": "Victoria"
+                },
+                {
+                    "family": "Leisch",
+                    "given": "Friedrich"
+                },
+                {
+                    "family": "Peng",
+                    "given": "Roger D."
+                }
+            ],
+            "id": "knitr2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "note": "ISBN 978-1466561595",
+            "publisher": "Chapman; Hall/CRC",
+            "title": "Knitr: A comprehensive tool for reproducible research in R",
+            "title-short": "Knitr",
+            "type": "chapter"
+        },
+        {
+            "URL": "https://bookdown.org/yihui/rmarkdown",
+            "author": [
+                {
+                    "family": "Xie",
+                    "given": "Yihui"
+                },
+                {
+                    "family": "Allaire",
+                    "given": "J. J."
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "id": "rmarkdown2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "note": "ISBN 9781138359338",
+            "publisher": "Chapman; Hall/CRC",
+            "publisher-place": "Boca Raton, Florida",
+            "title": "R markdown: The definitive guide",
+            "title-short": "R markdown",
+            "type": "book"
+        },
+        {
+            "DOI": "10.21105/joss.01686",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Averick",
+                    "given": "Mara"
+                },
+                {
+                    "family": "Bryan",
+                    "given": "Jennifer"
+                },
+                {
+                    "family": "Chang",
+                    "given": "Winston"
+                },
+                {
+                    "family": "McGowan",
+                    "given": "Lucy D’Agostino"
+                },
+                {
+                    "family": "François",
+                    "given": "Romain"
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                },
+                {
+                    "family": "Hayes",
+                    "given": "Alex"
+                },
+                {
+                    "family": "Henry",
+                    "given": "Lionel"
+                },
+                {
+                    "family": "Hester",
+                    "given": "Jim"
+                },
+                {
+                    "family": "Kuhn",
+                    "given": "Max"
+                },
+                {
+                    "family": "Pedersen",
+                    "given": "Thomas Lin"
+                },
+                {
+                    "family": "Miller",
+                    "given": "Evan"
+                },
+                {
+                    "family": "Bache",
+                    "given": "Stephan Milton"
+                },
+                {
+                    "family": "Müller",
+                    "given": "Kirill"
+                },
+                {
+                    "family": "Ooms",
+                    "given": "Jeroen"
+                },
+                {
+                    "family": "Robinson",
+                    "given": "David"
+                },
+                {
+                    "family": "Seidel",
+                    "given": "Dana Paige"
+                },
+                {
+                    "family": "Spinu",
+                    "given": "Vitalie"
+                },
+                {
+                    "family": "Takahashi",
+                    "given": "Kohske"
+                },
+                {
+                    "family": "Vaughan",
+                    "given": "Davis"
+                },
+                {
+                    "family": "Wilke",
+                    "given": "Claus"
+                },
+                {
+                    "family": "Woo",
+                    "given": "Kara"
+                },
+                {
+                    "family": "Yutani",
+                    "given": "Hiroaki"
+                }
+            ],
+            "container-title": "Journal of Open Source Software",
+            "id": "tidyverse",
+            "issue": "43",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "page": "1686",
+            "title": "Welcome to the tidyverse",
+            "type": "article-journal",
+            "volume": "4"
+        },
+        {
+            "DOI": "10.18637/jss.v097.i10",
+            "URL": "https://www.jstatsoft.org/index.php/jss/article/view/v097i10",
+            "author": [
+                {
+                    "dropping-particle": "van der",
+                    "family": "Loo",
+                    "given": "Mark P. J."
+                },
+                {
+                    "dropping-particle": "de",
+                    "family": "Jonge",
+                    "given": "Edwin"
+                }
+            ],
+            "container-title": "Journal of Statistical Software",
+            "id": "validate",
+            "issue": "10",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "page": "1-31",
+            "title": "Data validation infrastructure for r",
+            "type": "article-journal",
+            "volume": "97"
+        },
+        {
+            "DOI": "10.21105/joss.00859",
+            "author": [
+                {
+                    "family": "Odell",
+                    "given": "Evan"
+                }
+            ],
+            "container-title": "The Journal of Open Source Software",
+            "id": "nomisr",
+            "issue": "27",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "page": "859",
+            "title": "nomisr: Access nomis UK labour market data with r",
+            "title-short": "nomisr",
+            "type": "article-journal",
+            "volume": "3"
+        }
+    ],
+    "project_biblios": [
+        "Z2-book.bib",
+        "Z3-packages.bib"
+    ]
+}

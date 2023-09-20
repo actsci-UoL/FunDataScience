@@ -1,0 +1,10 @@
+"0","tmls <- get_timelines(""leicspolice"", n = 1000)"
+"2","Invalid or expired token - 89"
+"2","rate limit exceeded.  mins until rate limit resets."
+"0","tmls %>% "
+"0","  select(created_at, text) %>% "
+"0","  filter(str_detect(text, 'Traffic'))"
+"2","Error: Can't subset columns that don't exist.
+[31mx[39m Column `created_at` doesn't exist.
+[90mRun `rlang::last_error()` to see where the error occurred.[39m
+"

@@ -1,0 +1,30 @@
+"0","library(dplyr)"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","library(stringr)"
+"0","# Split up mtcars"
+"0","all_cars <- mtcars %>% arrange(wt)"
+"0","big_cars <- filter(all_cars, wt > 3.5 )"
+"0","little_cars <- filter(all_cars, wt <= 3.5)"
+"0",""
+"0","# Recombine"
+"0","combined_rows <- bind_rows(big_cars, little_cars) %>% arrange(wt)"
+"0",""
+"0","# Test for equality"
+"0","identical(all_cars, combined_rows)"
+"1","[1]"
+"1"," TRUE"
+"1","
+"

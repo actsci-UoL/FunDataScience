@@ -1,0 +1,157 @@
+# Working with tidy data
+
+```{r}
+#| label: w4_setup
+#| include: FALSE
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Overview
+
+This week we'll be examining the concept of tidy data and looking at how to pivot between different data formats.
+
+We'll also be looking at an important method of searching and manipulating strings called [regular expressions](https://en.wikipedia.org/wiki/Regular_expression).
+
+By the end of this week you'll be able to:
+
+1. Define the concept of tidy data and describe when it's useful
+2. Convert between narrower (tidy) data frames and wider ones using the functions in `tidyr`
+3. Describe the purpose and structure of a regular expression
+4. Use regular expressions in conjunction with the `stringr` package
+
+As a special bonus, you'll be able to use regular expressions for searching inside Microsoft Office documents.
+
+## Tidy data
+
+[Tidy data](https://tidyr.tidyverse.org/) is data where:
+
+  - Every column is a variable.
+  - Every row is an observation..
+  - Every cell is a single value.
+  
+Tidy data describes a standard way of storing data that is used wherever possible throughout the tidyverse. If you ensure that your data is tidy, you’ll spend less time fighting with the tools and more time working on your analysis.
+
+However, tidy data isn't always the best solution. In particular humans usually find wider data frames easier to take in and understand, so for presentation and data entry tasks the wider format is often best.
+
+Here's an example of a small tidy data set:
+
+```{r, echo = FALSE}
+tidy_df <- 
+  tibble(Name = rep(c("Tiddles", "Rover"), 3),
+                  Test = rep(1:3, each = 2),
+                  Score = rnorm(6))
+                  
+tidy_df
+```
+
+And here's the same data in a non-tidy (wide) format.
+
+```{r}
+wide_df <- 
+  tidy_df %>% 
+    pivot_wider(names_from = Test, 
+                names_prefix = "Test_", 
+                values_from = Score)
+
+wide_df
+```
+
+The functions in the `tidyverse` (notably `ggplot`) expect data in a tidy format but the wider format is often easier for people to read or to use when entering data.
+
+As you've just seen, the `pivot_wider()` function takes us from tidy (aka "longer") format to a wider format. We can go back with `pivot_longer()`. Notice that the parameters are matched to those in the 'pivot wider()' example above.
+
+```{r}
+wide_df %>% 
+  pivot_longer(cols = !Name,              # Apply to all columns except Name
+               names_to = "Test",
+               names_prefix = "Test_",    # Remove this from the names.
+               values_to = "Score",
+               ) 
+```
+For more details, see the [pivot vignette](https://tidyr.tidyverse.org/articles/pivot.html).
+
+_Note: `pivot_wider()` and `pivot_longer()` replaced the previous functions `spread()` and `gather()`, which you may still see around._
+
+## Regular expressions
+
+Regular expressions can be thought of as a mechanism for advanced search. They provide a language for writing a pattern which is used to match occurrences withing a character string. This ability is made use of by functions in many different languages - in R we'll mainly use them in conjunction with the 'stringr' package.
+
+Here's a simple example. Suppose the string we want to search is "Paul wrote this in 2020."
+
+The simplest search would be to see if `target` contains the string "Paul", like this.
+
+```{r}
+library(stringr)
+target <- "Paul wrote this in 2020."
+target %>% 
+  str_detect(pattern = "Paul")
+```
+
+Or we could extract the year contained in the target using a pattern that finds any string of exactly 4 digits.
+
+```{r}
+target %>% 
+  str_extract(pattern = "\\d{4}")
+```
+
+You'll see that a regular expression (or regex) will often contain a special character like `\\d`, which matches any digit. The double backslash is a quirk of R. Most implementations of regular expressions only require a single backslash, so if you use any resource not written specifically for R you'll see `\d` rather than `\\d`. 
+
+In fact (rather like SQL) there are minor differences in the implementation across different languages: something to bear in mind if you get stuck debugging some regex code.
+
+Our treatment in the lecture is by no means comprehensive - regular expressions can be considered a language in their own right. See:
+
+[Regular expressions](https://stringr.tidyverse.org/articles/regular-expressions.html)
+
+My favourite quick reference is:
+
+[Regex Cheat Sheet](http://www.rexegg.com/regex-quickstart.html)
+
+For `stringr` see:
+
+[Introduction to stringr](https://stringr.tidyverse.org/articles/stringr.html)
+
+The university library has a book called _Mastering Regular Expressions_ [@FriedlMRE].
+
+## Reading
+
+_R for Data Science_ [@wickhamR4DS]:
+
+  - Chapter 12 _Tidy data_
+
+_R Programming for Data Science_ [@pengRP4DS]:
+
+  - Chapter 13 _Control structures_
+  - Chapter 14 _Functions_
+  - Chapter 17 _Regular expressions_
+  
+## Check your understanding{.unnumbered}
+
+:::{.callout-tip collapse="true"}
+## In the regular expression "\\d{4}", why are there two backslashes?
+
+This is a peculiarity of using regular expressions in R. The first backslash tells R to treat the second backslash as a 'backslash' and not a special character.
+:::
+
+
+:::{.callout-tip collapse="true"}
+## What pattern would "\\D{4}" match?
+
+This would match any four characters that are NOT digits. (See also w vs W - i.e. lower-case w vs upper-case W).
+:::
+
+:::{.callout-tip collapse="true"}
+## In the world of regular expressions, what does "greedy" mean?
+
+A greedy expression matches the longest possible pattern it can find in the target. A lazy expression takes the first matching pattern it comes across (i.e. the shortest).
+
+For example, here we try extracting 2 or more digits after the decimal point:
+
+```{r}
+# Greedy...
+str_extract("The value of pi is 3.14159", "\\d\\.\\d{2,}")
+
+# Lazy (note the question mark)...
+str_extract("The value of pi is 3.14159", "\\d\\.\\d{2,}?")
+```
+:::

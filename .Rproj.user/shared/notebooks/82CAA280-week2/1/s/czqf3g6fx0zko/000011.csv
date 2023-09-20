@@ -1,0 +1,8 @@
+"0","#| label: w2_plot1"
+"0","library(ggplot2)"
+"0","plot_data <- "
+"0","  starwars %>% "
+"0","  filter(mass < 1000) # this is explained in the walk-through"
+"0",""
+"0","ggplot(plot_data) + "
+"0","  geom_point(aes(x = height, y = mass, color = sex))"

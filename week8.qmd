@@ -1,0 +1,40 @@
+# SQL
+
+## Overview
+
+This week we'll be looking at the database language [SQL.](https://en.wikipedia.org/wiki/SQL)
+
+You can't really be a data scientist without knowing something about SQL - it's the language used to interact with most of the databases (small and very large) in the world.
+
+In the task for this week you will use the `RSQLite`[@R-RSQLite] package to create a local database (using [SQLite](https://www.sqlite.org/index.html)) which you will then use as a source to answer various queries
+
+Start by skimming through the first few sections of the w3schools tutorial listed in the reading.
+
+Have a quick look at the documentation for `RSQLite` (also referenced in the reading).
+
+Then, open the file `QueryDemos.Rmd` and get working!
+
+For interest, there's information about connecting to external databases here: <https://db.rstudio.com/> .
+
+## Other types of database.
+
+SQL is designed to work with so-called _relational databases_. These are the most common sort of database, where the data is store in tables, much like data frames in concept. There is both strong theoretical backing and decades of technical development to support relational databases but there are other possibilities and, as always, the best solution depends on the task and the context.
+
+Alternatives to relational databases are often called NoSQL (where the "No" stands for "Not only". The topic is a bit beyond the scope of this module but it's an interesting and important one, so I thought I'd give you some brief pointers and I encourage you to do your own reading if you're interested.
+
+The main types of NoSQL data bases are:
+
+* [key-value](https://hazelcast.com/glossary/key-value-store/)
+  + a key-value database (or "store") is a set of unique identifiers (the keys) each of which has an associated value. You'er probably familiar with this concept, for example we saw it when we were looking at JSON.
+* [column-family](https://database.guide/what-is-a-column-store-database/) (or column-oriented)
+  + column-family databases are optimised for aggregating functions (down columns) like sum, maximum, etc. So they can be useful for applications where analytics are important.
+* [document databases](https://en.wikipedia.org/wiki/Document-oriented_database)
+  + a document database is a type of key-value database where the "value" is a document with its own internal structure that can be queried. Probably the best known supplier is [MongoDB](https://www.mongodb.com/)
+* [graph databases](https://en.wikipedia.org/wiki/Graph_database){target="-blank"}
+  + in a graph database data is stored in the form of a graph (the mathematical type of graph consisting of nodes and edges, not a bar chart!). The edges, or links, between nodes carry semantic information, for example `(Nigel) -- teaches -- (statistics)`. Here, `(Nigel)` and `(statistics)` are nodes and the link between them expresses the relationship.
+
+## Reading
+
+  * https://www.w3schools.com/sql/sql_intro.asp
+  * https://db.rstudio.com/databases/sqlite/
+  * https://www.datacamp.com/courses/intro-to-sql-for-data-science (if you are interested)

@@ -1,0 +1,4 @@
+"0","#| label: w2_plot2"
+"0",""
+"0","ggplot(plot_data) + "
+"0","  geom_bar(aes(x = sex), fill = ""skyblue"")"

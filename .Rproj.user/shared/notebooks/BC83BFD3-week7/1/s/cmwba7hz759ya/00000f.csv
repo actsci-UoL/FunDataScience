@@ -1,0 +1,33 @@
+"0","#| label: w7_pets_xml"
+"0","#| include: false"
+"0",""
+"0","library(xml2)"
+"0","library(dplyr)"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","my_pets <- ""<pets>"
+"0","  <pet id = '001' species = 'dog'>"
+"0","    <tag>Rover</tag>"
+"0","    <colour>black</colour>"
+"0","  </pet>"
+"0","  <pet id = '002' species = 'cat'>"
+"0","    <tag>Tiddles</tag>"
+"0","    <colour>ginger</colour>"
+"0","  </pet>"
+"0","  <pet id = '003' species = 'dog'>"
+"0","    <tag>Fido</tag>"
+"0","    <colour>brownish</colour>"
+"0","  </pet>"
+"0","</pets>"""

@@ -1,0 +1,3 @@
+"0","details <- "
+"0","  details %>% "
+"0","  bind_rows(tibble(ID = 4, Level = ""PGT"", Email = ""stu4@univ.ac.uk""))"

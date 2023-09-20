@@ -1,0 +1,9 @@
+"0","```r
+## search for 18000 tweets using the rstats hashtag
+rt <- search_tweets(
+  \"#StormBarra\", n = 100, include_rts = FALSE
+)
+
+## preview tweets data
+rt
+```"

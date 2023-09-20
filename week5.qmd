@@ -1,0 +1,204 @@
+# Joining tables
+
+## Overview
+
+This week we'll be looking at how to combine different tables of data.
+
+By the end of this chapter you'll be able to:
+
+1. Joint data frames using `dplyr::bind_rows()` or `dplyr::bind_cols()`
+2. Describe and use the following `dplyr` mutating joins:
+  + `left_join()`
+  + `right_join()`
+  + `inner_join()`
+  + `full_join()`
+3. Describe and use the following `dplyr` filtering joins:
+  + `semi_join()`
+  + `anti_join()`
+
+## Joining Tables
+
+It's a common problem to have to combine data contained in two different tables. (We'll always assume in R that we are referring to data frames when we talk about a table - although there are other table-like structures)
+
+### Binding rows
+
+One simple case is when we have two tables with identical columns and we want to "stick" one onto the bottom of the other. In Excel this is often done by cutting and pasting, which is a very dangerous method since it's so easy to lose rows.
+
+In R we do this using `dplyr::bind_rows()`. (This is the tidyverse equivalent of `rbind()`.)
+
+```{r}
+#| label: w5_setup
+#| message: FALSE
+library(dplyr)
+library(stringr)
+# Split up mtcars
+all_cars <- mtcars %>% arrange(wt)
+big_cars <- filter(all_cars, wt > 3.5 )
+little_cars <- filter(all_cars, wt <= 3.5)
+
+# Recombine
+combined_rows <- bind_rows(big_cars, little_cars) %>% arrange(wt)
+
+# Test for equality
+identical(all_cars, combined_rows)
+```
+
+A few things to note:
+
+  1. If one of the data frames has a column that isn't in the other, it will be filled with NAs in the output;
+  2. The columns don't have to be in the same order, they just have to have the same names;
+  3. If there are are duplicated rows in the inputs, they will be duplicated in the output (see `union()` for a way to avoid this if both data frames have identical columns);
+  4. `bind_rows()` can take any number of inputs - contained in a list;
+  5. If you are trying to join many data frames (inside a loop for example) it is much faster to collect them in a list and then bind them all at once, than it is to bind each one inside the loop.
+  6. You can use the `.id` parameter to record the source of each row (see `?bind_rows`).
+  7. The set functions `union()`, `intersect()` and `setdif()` can also be useful.
+  
+### Binding columns
+
+If we have the same number of rows in two data frames we can add the columns using `bind_cols()`.
+
+```{r}
+#| label: w5_binding
+# Split up mtcars
+cars1 <- all_cars %>% select(1:4)
+cars2 <- all_cars %>% select(-(1:4))
+
+#Recombine
+combined_cols <- bind_cols(cars1, cars2)
+
+# Test for equality
+identical(all_cars, combined_cols)
+```
+## Mutating Joins
+
+The following joins allow us to combine the data from two tables, creating extra columns as necessary.
+
+A nice feature of these `join_ functions is that their names and behaviour are similar to analogous functions for joining data in SQL, as we will see later in the programme.
+
+Suppose I have a table containing some details of students registered on a particular module. Perhaps it contains the student ID and a mark for a particular assignment.
+
+```{r}
+#| label: w5_make_data1
+set.seed(123)
+marks <- 
+  tibble(ID = 1:5,
+         Score = round(rnorm(5, mean = 65, sd = 10), 1))
+
+marks$ID[5] <- 25
+marks
+```
+
+I also have a table listing students and whether they are UG or PGT and their email address.
+
+```{r}
+#| label: w5_make_data2
+details <- 
+  tibble( ID = 1:10,
+          Level = sample(c("UG", "PGT"), size = 10, replace = TRUE)) %>% 
+  mutate(Email = str_c("stu", ID, "@univ.ac.uk"))
+
+is.na(details$Email) <- 3
+
+details
+```
+Now suppose I want to add the email address to the first data frame. In Excel we could use something like  `vlookup` or `index/match`. In R we can use a `left_join()` which takes each row in the second table and adds the columns from the second if it finds a match. In my experience this is the most commonly used join.
+
+```{r}
+#| label: w5_left_join
+marks %>% 
+  left_join(details, by = "ID")
+```
+
+If you don't want the Level column it can be filtered out after the join.
+
+`right_join()` includes all the rows in the second table.
+
+```{r}
+#| label: w5_right_join
+marks %>% 
+  right_join(details, by = "ID")
+```
+
+In this case we end up with 10 rows (as in the `details` table.)
+
+`inner_join()` only matches rows that occur in both tables.
+
+```{r}
+#| label: w5_inner_join
+marks %>% 
+  inner_join(details, by = "ID")
+```
+Finally, `full_join()` includes all rows in `marks` OR `details`.
+
+```{r}
+#| label: w5_full_join
+marks %>% 
+  full_join(details, by = "ID")
+```
+
+Note that if the second table (`details`) contains more than one row that matches with ID in `marks` there will be more than one corresponding row in the output.
+
+```{r}
+details <- 
+  details %>% 
+  bind_rows(tibble(ID = 4, Level = "PGT", Email = "stu4@univ.ac.uk"))
+```
+
+```{r}
+marks %>% 
+  left_join(details, by = "ID")
+```
+### Filtering joins
+
+Sometimes we want to remove rows from the first table, dependent on the contents of the second. For example we can use the information about student level in `details` to pick out any students with out a matching entry.
+
+```{r}
+#| label: w5_anti_join
+marks %>% 
+  anti_join(details, by = "ID")
+```
+
+Or we can use a list of UG students (in this case generated by filtering `details`) to pick out the UG students in marks.
+
+```{r}
+#| label: w5_semi_join
+marks %>% 
+  semi_join(details %>% filter(Level =="UG"), by = "ID")
+```
+## Summary
+
+**Mutating joins** add columns from y to x, matching rows based on the keys passed with the `by = ` parameter:
+
+`inner_join()` includes all rows in x and y.
+
+`left_join()` includes all rows in x.
+
+`right_join()` includes all rows in y.
+
+`full_join()` includes all rows in x or y.
+
+If a row in x matches multiple rows in y, all the rows in y will be returned once for each matching row in x.
+
+**Filtering joins** filter rows from x based on the presence or absence of matches in y:
+
+`semi_join()` returns all rows from x with a match in y.
+
+`anti_join()` returns all rows from x without a match in y.
+
+## Reading
+
+R for Data Science [@wickhamR4DS]:
+
+  - _Chapter 13 Relational data_
+
+## Check your understanding{.unnumbered}
+
+:::{.callout-tip collapse="true"}
+## What would you expect the output from `full_join(big_cars, little_cars)` to be?
+
+```{r}
+#| label: w5_check_understanding
+full_join(big_cars, little_cars)
+```
+
+:::

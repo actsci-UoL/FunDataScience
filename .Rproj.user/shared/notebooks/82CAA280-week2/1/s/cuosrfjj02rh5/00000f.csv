@@ -1,0 +1,6 @@
+"0","#| label: w2_map2"
+"0","#| warning: FALSE"
+"0",""
+"0","m + geom_point(data = cities, aes(x = Longitude, y = Latitude)) +"
+"0","  xlim(c(-2, 2)) +"
+"0","  ylim(c(50, 52))"

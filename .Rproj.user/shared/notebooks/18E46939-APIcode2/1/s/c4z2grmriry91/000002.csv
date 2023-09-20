@@ -1,0 +1,9 @@
+"0","```r
+## authenticate via web browser
+token <- create_token(
+  app = \"R camlad\",
+  consumer_key = api_key,
+  consumer_secret = api_secret_key,
+  access_token = access_token,
+  access_secret = access_token_secret)
+```"

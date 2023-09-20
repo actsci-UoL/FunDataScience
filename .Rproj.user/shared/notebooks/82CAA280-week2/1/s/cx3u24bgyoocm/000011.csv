@@ -1,0 +1,8 @@
+"0","#| label: w2_read_excel_data"
+"0","#| message: FALSE"
+"0",""
+"0","library(readxl)"
+"0","cities <- read_excel(here(""_Data"", ""UK_cities.xlsx""))"
+"0","cities %>% "
+"0","  arrange(Latitude) %>% "
+"0","  head(10)"

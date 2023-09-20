@@ -1,0 +1,5 @@
+"0","#| label: w7_pet_ids"
+"0","pet_id <- "
+"0","xpets %>%"
+"0","  xml_find_all("".//pet"") %>%"
+"0","  xml_attr(""id"")"

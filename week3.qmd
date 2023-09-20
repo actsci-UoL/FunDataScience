@@ -1,0 +1,88 @@
+# Group and summarise
+
+## Overview
+
+This week we'll be doing more manipulation of tabular data using the `dplyr`[@R-dplyr] verbs `group()` and `summarise()`.
+
+We'll also be creating more bar charts using `ggplot2`[@R-ggplot2].
+
+By the end of this week you'll be able to:
+
+1. Group and summarise data in a tabular data set
+2. Use `table()` and functions from the `janitor` package to create cross-tab summaries
+3. Use functions from the `forcats` package to work with factors
+
+You'll need to use the references and the R help system to develop the above skills as you work through the Week 3 task.
+
+## Reading
+
+R for Data Science [@wickhamR4DS]:
+
+  - Chapter 3 _Data visualisation_
+  - Chapter 5 _Data transformation_
+  - Chapter 6 _Workflow: scripts_
+  - Chapter 7 _Exploratory Data Analysis_
+  - Chapter 8 _Workflow: projects_
+
+R Programming for Data Science [@pengRP4DS]:
+
+  - Chapter 12 _Managing Data Frames with the dplyr package_
+
+## Making slides in R Markdown
+
+You'll need to make slides for the final assessment - so here's a preview. It's very easy - you can do it straight from the menu: 
+
+__File > New File > R Markdown...__
+
+See the [guide to producing slides](https://rmarkdown.rstudio.com/lesson-11.html) (part of a larger introduction to using R Markdown from the makers of RStudio.)
+
+## Debugging
+
+> Code almost never works properly the first time you write it
+
+> Running into bugs and errors is frustrating, but it's also an opportunity to learn a bit more.
+
+> Errors can be obscure, but they are usually not malicious or random. 
+
+> If something has gone wrong, 
+> you can find out why it happened.
+
+## Knitting to HTML (hints)
+
+1. make sure all your packages are up to date.
+
+2. does all your .RMD code run properly (i.e. if you click "run all" does it run without any error messages) - if it doesn't, fix it.
+
+3. if (2) works, start a new R session on the server (for example, by closing down and restarting) - does the RMD code still run? If not, fix it.
+
+4. once the RMD file runs, try clicking on knit to HTML, again, if that fails and you can't fix it, ask for help.
+  
+5. If you can knit to HTMl, you can try knitting to Word and PDF.
+
+6. If you can knit to Word, you can create a PDF file by exporting from Word
+
+7. If you can't create a PDF file in any other way you can try this as a last resort. If knitting to HTML works and opens an HTML file in a viewer window, click on "view in browser". If you are using Chrome, you will be able to save as a PDF document under "print".  I advise installing Chrome for UoL work because that is the standard on University machines so most things are tested on it. 
+
+## Week 3 Task
+
+Some bigger files to work on this week, and some wider research required.
+
+The task is on Blackboard and on the server at
+
+`/data/FDS/Scripts/`
+
+`/data/FDS/Data/`
+
+## Check your understanding{.unnumbered}
+  
+:::{.callout-tip collapse="true"}
+## What is a "vignette" in the world of R?
+
+A vignette is a readble introduction to a package, or a particular aspect of it. It is typically more friendly than the bare package documentation (such as the reference PDF file found on CRAN) and contains code examples in a tutorial style.
+:::
+
+:::{.callout-tip collapse="true"}
+## Find the vignette called _Introduction to dplyr_ and study it.
+
+Here's the link to [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html).
+:::

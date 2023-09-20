@@ -1,0 +1,8 @@
+"0","details <- "
+"0","  tibble( ID = 1:10,"
+"0","          Level = sample(c(""UG"", ""PGT""), size = 10, replace = TRUE)) %>% "
+"0","  mutate(Email = str_c(""stu"", ID, ""@univ.ac.uk""))"
+"0",""
+"0","is.na(details$Email) <- 3"
+"0",""
+"0","details"

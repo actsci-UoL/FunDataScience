@@ -1,0 +1,212 @@
+# Tabular data
+
+## Overview
+
+This week we'll be learning about the data structures: vectors, data frames & tibbles.
+
+Then we'll be using the `dplyr` package (part of `tidyverse`) to begin manipulating tabular data.
+
+We'll be using the `dplyr` verbs select, filter, mutate and arrange.
+
+By the end of this week you'll be able to:
+
+1. Explore a tabular data set interactively in the console
+2. Manipulate tabular data using the functions in `dplyr`
+3. Read an external CSV or Excel file into R
+4. Find the documentation for a function or package
+5. Produce a simple scatter or bar chart in `ggplot2`
+6. Draw a simple map with `ggplot` and add points
+7. Output your work as a PDF file from RStudio
+
+Believe it or not this small set of skills will enable you to do some very interesting exploratory data analysis (EDA)
+
+
+## Reading
+
+R for Data Science [@wickhamR4DS]:
+  - Chapter 5 - _Data transformation_
+
+R Programming for Data Science [@pengRP4DS]:
+  - Chapter 5 - _Getting Data in and out of R_
+  - Chapter 6 - _Using the readr package_
+
+## Digging deeper into the structure of a data frame
+
+We're going to use the `starwars` dataset that is automatically loaded with the package `dplyr`. To get it you will have to make sure `dplyr` is loaded (It's one of the core `tidyverse` packages).
+
+The first step in most analyses is to explore the data interactively in the console. The most common functions to do this are:
+
+`View(df)`
+
+`head(df)`
+
+`summary(df)`
+
+`glimpse(df)`
+
+`str(df)`
+
+You can watch a [walk-through](https://leicester.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=59ce1633-c156-4beb-ad77-ac5100b1d932) of the use of these functions on the starwars data.
+
+Each all the elements of each column of a data frame must be of the same type. In `starwars` there are elements of type `numeric`, `character` and list.
+
+[Here](https://leicester.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=aa29c726-9a20-42cd-9bfa-ac5100c08749) is a demonstration of how to extract individual columns from a data frame.
+
+
+## Reading data from a tabular file
+
+The most common way we'll be using to get data into R will be to load it from file - usually a CSV or Excel file.
+
+To read a CSV file we will use the `read_csv` function which is part of the `readr` package loaded with `tidyverse` (There is a function `read.csv` which is part of base R, but `readr::read_csv` is better.)
+
+There are lots of optional parameters that you can use to refine the performance of `read_csv`, but it often works fine with just the path to the file.
+
+For example, if we have a file of the 100 most popular girl babies names in England and Wales, in a file called `GirlsNames.csv` we can import it with the following code.
+
+```{r}
+#| label: w2_read_csv_data
+#| message: FALSE
+library(dplyr)
+library(readr)
+library(here)
+girls <- read_csv(here("_Data", "GirlsNames.csv"))
+head(girls, 10)
+```
+
+(Data downloaded from the [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalesbabynamesstatisticsgirls))
+
+Data in Excel files can be read in similarly.
+
+```{r}
+#| label: w2_read_excel_data
+#| message: FALSE
+
+library(readxl)
+cities <- read_excel(here("_Data", "UK_cities.xlsx"))
+cities %>% 
+  arrange(Latitude) %>% 
+  head(10)
+```
+
+## Documentation and help
+
+You should get into the habit of looking at the documentation for each function the first time you use it.
+
+The first place to look is by using the built-in help in RStudio. You can either go to the help window and use the search, or you can type "?<function name>" in the console. For example "?read_csv". (You'll usually need to have the relevant package loaded to get help, but "??<package name>" might produce something useful.). The help information can sometimes be a bit technical and overwhelming, but there are usually helpful examples at the end.
+
+Have a look at the help page for `read_csv` now.
+
+The official repository for packages is called CRAN. There you will find the package documentation which always has a PDF reference document with details of all the functions in the package. You'll also often find one or more _vignettes_ which are tutorial-style documents giving an introduction to the package and maybe more detail on particular aspects.
+
+Try a web search for "CRAN dplyr" now and see what you can find.
+
+Of course, there is a lot of other support available online. You can try the [tidyverse site](https://www.tidyverse.org/) or [stack overflow](https://stackoverflow.com/questions/tagged/r)
+
+
+## Simple plots with ggplot
+
+Now we know how to get data into R it won't be long before you want to plot it.
+
+There are a number of alternatives but we'll be using `ggplot`. The syntax can take a bit of getting used to, so here are a couple of simple examples.
+
+There are three different components to making a plot in `ggplot`.
+
+  1. a data frame containing the data you want to plot
+  2. the type of plot you want
+  3. the columns containing the data to be plotted
+  
+Here's the simplest possible example using the `starwars` data. (here's a [walk-through](https://leicester.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=14b2ce13-befd-4b27-80fc-ac5100c3ddeb))
+
+```{r}
+#| label: w2_plot1
+library(ggplot2)
+plot_data <- 
+  starwars %>% 
+  filter(mass < 1000) # this is explained in the walk-through
+
+ggplot(plot_data) + 
+  geom_point(aes(x = height, y = mass, color = sex))
+```
+
+Part 1 is dealt with by passing the data frame as a parameter to `ggplot`.
+
+Part 2 is dealt with by choosing an appropriate `geom_` function.
+
+Part 3 is dealt with by the parameters to the `aes` function. Note that different geoms have different `aes` requirements. See the built in help for the particular geom.
+
+Here's another example:
+
+```{r}
+#| label: w2_plot2
+
+ggplot(plot_data) + 
+  geom_bar(aes(x = sex), fill = "skyblue")
+```
+For a quick and easy guide to producing many types of plots see the R Graphics Cookbook [@changRGC].
+
+## Simple maps with ggplot
+
+There's no denying that manipulating and visualizing spatial data can be very complex and most of the techniques are far beyond the scope of this course. But it's such a powerful visualization method that I thought it was important to give you a way to get started by plotting points on a simple map.
+
+If you want to find out more about this topic I recommend Geocomputation with R [@lovelaceGR]
+
+There are many formats for storing spatial data. In this example we use two: shapefiles and the relatively new Simple Features,
+
+Shapefiles are well established, and most publishers of geographical information will make it available in this format (possibly alongside others)
+
+The simple features format allows us to work with geographical data in the familiar form of a data frame, and to plot maps using `ggplot`. We'll need to install the `sf` package before we can get started.
+
+We are going to use low resolution country boundary shapefiles from [here](https://hub.arcgis.com/datasets/bff789530b964a76938de17824165ceb_0/data){target="_blamk}. (I've already downloaded files for the UK and Ireland and put them in Blackboard.)
+
+The first bit of code reads in two files and converts them to `sf` objects.
+
+```{r}
+#| label: read_sf_data
+#| message: FALSE
+
+library(sf)
+Ireland <- 
+  st_read(here("_Data", "Ireland_Boundaries-shp", "Country_Boundaries.shp"),
+          quiet = TRUE)
+UK <- 
+  st_read(here("_Data", "UK_Boundaries-shp", "Country_Boundaries.shp"),
+          quiet = TRUE)
+```
+
+Let's look at what's inside one of these `sf` objects.
+
+```{r}
+#| label: glimpse_sf_data
+
+glimpse(Ireland)
+```
+We can see there is only one row and 8 columns. The row contains attributes and geometry information about a single feature - crucially it contains geometry information which, in this case defines a set of polygons which make up the boundary of Ireland.
+
+Since they came from the same source, the UK file contains the same columns, so we can stick them together to create a single object which we can then plot using the `sf_geom` provided by `ggplot2`
+
+```{r}
+#| label: w2_map1
+
+UK_IRL <- bind_rows(UK, Ireland)
+m <- ggplot() + geom_sf(data = UK_IRL) # We can plot m now, and add to it later.
+m
+```
+
+To demonstrate how we can add additional points to this data, we'll add the cities we listed above to the map. We'll also change the limits of the plot to zoom in on the South East of the country.
+
+```{r}
+#| label: w2_map2
+#| warning: FALSE
+
+m + geom_point(data = cities, aes(x = Longitude, y = Latitude)) +
+  xlim(c(-2, 2)) +
+  ylim(c(50, 52))
+```
+
+At this scale we can see the low resolution of the boundary information.
+
+
+## Week 2 Task
+
+The task for Week 2 can be found in the Week 2 folder on Blackboard.
+

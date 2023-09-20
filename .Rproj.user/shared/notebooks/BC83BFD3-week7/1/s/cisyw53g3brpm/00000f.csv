@@ -1,0 +1,5 @@
+"0","#| label: w7_pet_names"
+"0","pet_name <- "
+"0","  xpets %>% "
+"0","  xml_find_all("".//pet/tag"") %>% "
+"0","  xml_text()"

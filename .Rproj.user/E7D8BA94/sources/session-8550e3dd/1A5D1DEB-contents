@@ -1,0 +1,245 @@
+# Some other data structures
+
+## Overview
+
+This week we'll be covering different data structures:
+
+  - XML
+  - JSON
+  - unstructured (or semi-structured) text
+
+## XML
+
+Extensible Markup Language (XML) is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. 
+
+XML can serve as the basis for defining markup languages for particular domains. For example XBRL (Extensible Business Reporting Language), KML (Keyhole Markup Language for geographic information), BeerXML (you guessed it).
+
+
+Here is a simple example containing some data about my pets.
+
+```
+<pets>
+  <pet id = '001' species = 'dog'>
+    <tag>Rover</tag>
+    <colour>black</colour>
+  </pet>
+  <pet id = '002' species = 'cat'>
+    <tag>Tiddles</tag>
+    <colour>ginger</colour>
+  </pet>
+  <pet id = '003' species = 'dog'>
+    <tag>Fido</tag>
+    <colour>brownish</colour>
+  </pet>
+</pets>
+```
+
+Even if you knew nothing about XML before, you can work out what is going on.
+
+### Package `xml2`
+
+The package `xml2` gives you tools to read an XML file and extract the data. 
+
+https://blog.rstudio.com/2015/04/21/xml2/
+
+Normally you would read the data from an external file, but for a very small example I've saved the data above as a string called `my_pets`.
+
+```{r}
+#| label: w7_pets_xml
+#| include: false
+
+library(xml2)
+library(dplyr)
+
+my_pets <- "<pets>
+  <pet id = '001' species = 'dog'>
+    <tag>Rover</tag>
+    <colour>black</colour>
+  </pet>
+  <pet id = '002' species = 'cat'>
+    <tag>Tiddles</tag>
+    <colour>ginger</colour>
+  </pet>
+  <pet id = '003' species = 'dog'>
+    <tag>Fido</tag>
+    <colour>brownish</colour>
+  </pet>
+</pets>"
+```
+
+### Navigating the tree
+
+In XML everything is arranged in a tree structure, and each element is called a __node__.
+
+You are familiar with a tree structure - just think of the way the files are organised on your computer: folders sit inside folders and each folder can contain other folders and files.
+
+In a similar way, nodes sit inside nodes and each node can contain other nodes. The first node, that contains everything else, is the root node, and a node that doesn't contain any other nodes is called a leaf node.
+
+In our example <pets>...</pets> is the root node, and the text strings "Fido", "Brownish" etc are leaf nodes.
+
+Nodes can also contain __attributes__. For example the <pet>...</pet> nodes have "id" and "species" attributes.
+
+Every node, except the root, has exactly one parent, and nodes can have children and siblings (nodes with the same parent).
+
+We can use these concepts to navigate the tree.
+
+```{r}
+#| label: w7_nav_pets
+xpets <- read_xml(my_pets)
+xml_name(xpets)  # The name of the root node
+xml_child(xpets) # Finds the first child of the root (Rover)
+xml_children(xpets) # Finds all the children of the root (Rover, Fido & Tibbles)
+xml_children(xpets) |> xml_name() # The name of each child
+xml_child(xpets) |> xml_siblings() # the siblings of Rover
+xml_child(xpets) |> xml_parent() # The parent of Rover
+xml_child(xpets) |> xml_child() # <tag> and <colour> are children of Rover
+```
+
+### Searching
+
+We can navigate and search through the tree with more precision using [XPath](https://www.w3schools.com/xml/xpath_syntax.asp){target="_blank"}.
+
+```{r}
+#| label: w7_find_cat
+xml_find_first(xpets, '//pet[@species="cat"]') # Find the first cat
+```
+
+```{r}
+#| label: w7_find_dogs
+xpets %>% 
+      xml_find_all("//pet[@species='dog']") %>% # List the dogs' names
+      xml_find_all(".//tag") %>%                # Note the important .
+      xml_text()
+```
+
+```{r}
+#| label: w7_find_dogs2
+xpets %>%
+  xml_find_all(".//pet[@species='dog']") %>%
+  xml_attr("id")
+```
+
+### Create a data frame
+
+By extracting each quantity we want separately we can put together a data frame.
+
+```{r}
+#| label: w7_pet_ids
+pet_id <- 
+xpets %>%
+  xml_find_all(".//pet") %>%
+  xml_attr("id")
+```
+
+```{r}
+#| label: w7_pet_species
+pet_species <- 
+xpets %>%
+  xml_find_all(".//pet") %>%
+  xml_attr("species")
+```
+
+```{r}
+#| label: w7_pet_names
+pet_name <- 
+  xpets %>% 
+  xml_find_all(".//pet/tag") %>% 
+  xml_text()
+```
+
+```{r}
+#| label: w7_pet_colour
+pet_colour <- 
+  xpets %>% 
+  xml_find_all(".//pet/colour") %>% 
+  xml_text()
+```
+
+```{r}
+#| label: w7_pet_df
+dfpets <- 
+  data.frame(ID = pet_id,
+             Name = pet_name,
+             Species = pet_species,
+             Colour = pet_colour)
+dfpets
+```
+
+## JSON
+
+JSON is a syntax for storing and exchanging data. It's lightweight, human readable, language-independent and very widely used. Most languages can process JSON.
+
+To see what JSON looks like we'll use the `jsonlite` package to convert our pets data from a data frame to JSON.
+
+
+```{r}
+#| label: w7_json1
+#| message: false
+library(jsonlite)
+jpets <- toJSON(dfpets)
+jpets
+```
+
+JSON stands for __JavaScript Object Notation__. The text inside each set of curly brackets represents a JavaScript object - but it is just text and can be taken to JSON is independent of JavaScript.
+
+We can make it easier to read:
+
+```{r}
+#| label: w7_json2
+prettify((jpets))
+```
+
+`jsonlite`has a function to convert to a data frame.
+
+```{r}
+#| label: w7_json3
+fromJSON(jpets)
+```
+
+## Text processing
+
+Text processing (a branch of Natural Language Processing, or NLP) is a big topic and we can only scratch the surface in this module.
+
+In Wednesday's class we will look at an example of sentiment analysis. 
+
+We'll use a list of English words rated for valence with an integer between minus five (negative) and plus five (positive). The words have been manually labeled by Finn Årup Nielsen in 2009-2011.[@AFINN] but I have removed profanities from the list because I used it for a presentation in a school.
+
+We'll also use some classic texts downloaded from [Project Gutenburg](www.gutenberg.org).
+
+Please see the Further Reading for more information on text processing (and you'll probably want to refresh your regex skills).  
+
+
+## Reading
+
+  * XML
+    + [What is XML](https://www.ibm.com/developerworks/xml/tutorials/xmlintro/xmlintro.html) (Just the first bit)
+    + [Parse and process XML (and HTML) with xml2](https://blog.rstudio.com/2015/04/21/xml2/)
+  * JSON
+    + [Intro to JSON](https://www.digitalocean.com/community/tutorials/an-introduction-to-json)
+  
+## Further reading
+
+_Text Mining with R: a tidy approach_ [@silgeTTM] is an excellent introduction, compatible with the methods used in this course.
+
+## Check your understanding{.unnumbered}
+
+:::{.callout-tip collapse="true"}
+## Convert the `starwars` data to JSON and examine the structure.
+
+```{r}
+#| label: w7_check_understanding1
+jstarwars <- toJSON(starwars, pretty = TRUE)
+```
+:::
+
+:::{.callout-tip collapse="true"}
+## Try converting back to a data frame and compare with the original.
+
+```{r}
+#| label: w7_check_understanding2
+dfstarwars <- fromJSON(jstarwars)
+
+identical(starwars, dfstarwars)
+```
+`identical()` returns FALSE. Can you work out why?
+:::

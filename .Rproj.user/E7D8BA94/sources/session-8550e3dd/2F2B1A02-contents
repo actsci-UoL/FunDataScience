@@ -1,0 +1,248 @@
+# APIs
+
+## Overview
+
+This week we'll be looking at [APIs](https://en.wikipedia.org/wiki/API)
+
+## Definitions
+
+### API
+
+An application programming interface (API) is an interface or communication protocol between different parts of a computer program intended to simplify the implementation and maintenance of software. (Wikipedia)
+
+### REST
+
+Representational state transfer (REST) is a software architectural style that defines a set of constraints to be used for creating Web services. (Wikipedia)
+
+Specifically, one of the restful rules is that that you should get data (called a resource) returned when you link to a specific URL.
+
+The URL is called a __request__ and what is sent back is called a __response__.
+
+You can use restful APIs to send as well as receive data, but we will only look at how to get data.
+
+The API request can be included in a program - so you don't need a user to click on a _download_ link.
+
+Another piece of jargon is __endpoint__. This is the base url for the API. This is followed by a __path__ that points to the exact resource.
+
+Finally we can have __query parameters__. These always begin with a ? and look like:
+
+`?query1=param1&query2=param2`
+
+where the & separates two query/parameter pairs.
+
+Let's have an example.
+
+## Example
+
+The endpoint for Github is: `https://api.github.com`
+
+The path to a specific user's repos is `/users/<username>/repos`.
+
+Try copying `https://api.github.com/users/vivait/repos` into your browser...
+
+you should see information returned in JSON.
+
+But we want to access the data in a program, not via a browser.
+
+The package [`httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html) provides tools for HTTP, including the verb GET:
+
+
+```{r}
+#| label: w9_setup
+#| message: false
+#| warning: false
+library(dplyr)
+library(jsonlite)
+library(httr)
+```
+
+```{r}
+#| label: w9_github_API
+github_api <- function(path) {
+  url <- modify_url("https://api.github.com", path = path)
+  GET(url)
+}
+
+resp <- github_api("/users/actuarial-science/repos")
+```
+
+We can use `jsonlite` to parse the content of the response into a useful R object.
+
+```{r}
+#| label: w9_github_API2
+repos <- fromJSON(content(resp, "text"))
+```
+
+We can add some parameters to our query
+
+```{r}
+#| label: w9_github_API3
+resp <- github_api("/users/vivait/repos?sort=updated&per_page=100")
+repos <- fromJSON(content(resp, "text"))
+```
+
+In fact, if we know the request will return JSON, we can parse it directly with `jsonlite`. (Not advised in a program.)
+
+For example, the Github documentation says _You can issue a GET request to the root endpoint to get all the endpoint categories that the REST API v3 supports_:
+
+```{r}
+#| label: w9_github_API4
+head(fromJSON("https://api.github.com"), 10)
+```
+## Twitter example
+
+```{r}
+#| label: w9_twitter_API
+#| echo: false
+# api_key <- "6MyqmTkgDXQ4f1zIIqIbFHtTN"
+# api_secret_key <- "cs7bmYI1BZg8GW0jWQuNyUYUsInYUFwycyoLCvb6Y1YpsQIXJV"
+# access_token <- "19681396-xMRexZy5AfoUaTqoj853bdL2Qlnzth1l9IBiaUecr"
+# access_token_secret <- "YMHm8Qu6yA7QSzOxBUzKOy85w4xP7W3S5JhPjwUfCeWdo"
+# 
+# bearer_token <- "AAAAAAAAAAAAAAAAAAAAABbXVwAAAAAA%2BKEskMoej1oMFdWtVhik9cjPZRE%3DCAoSnK5mNfepHt7e6neySo55XAKXj2BPjINQONqX3tJ33Un2rD"
+```
+
+This code demonstrates how to use the `rtweet` package.
+
+For more detail, see <https://cran.r-project.org/web/packages/rtweet/vignettes/intro.html>. 
+
+First you'll need to set up a developer account with Twitter and get the access keys you need by creating a new app.
+
+Follow the instructions at: <https://cran.r-project.org/web/packages/rtweet/vignettes/auth.html>.
+
+```{r}
+#| label: w9_twitter_API2
+#| message: false
+#| warning: false
+# library(rtweet)
+# ## authenticate - insert your app name and keys below
+# token <- create_token(
+#   app = "R camlad",
+#   consumer_key = api_key,
+#   consumer_secret = api_secret_key,
+#   access_token = access_token,
+#   access_secret = access_token_secret)
+```
+
+### Following a hashtag
+
+We can search for tweets including a particular hashtag.
+
+```{r}
+#| label: w9_twitter_API3
+## search for tweets using the Cardano hashtag
+# rt <- search_tweets("#Cardano", n = 100, include_rts = FALSE)
+# 
+# ## preview tweets data
+# rt %>% select(id, text)
+```
+### Trending in Leicester
+
+```{r}
+#| label: w9_twitter_API4
+# trnds <- get_trends("Leicester")
+# trnds %>% 
+#   select(trend, tweet_volume) %>% 
+#   arrange(desc(tweet_volume))
+```
+
+### Get a particular user's timeline
+
+```{r}
+#| label: w9_twitter_API5
+library(stringr)
+# tmls <- get_timeline("leicspolice", n = 100)
+# 
+# tmls %>% 
+#   select(created_at, text) %>% 
+#   filter(str_detect(text, 'Traffic'))
+```
+
+## Accessing UK census (and other) data
+
+Our final example demonstrates the NOMIS API, which can be accessed through the `nomisr`[@nomisr] package.
+
+### A quick demonstration of using `nomisr` to extract data from the Nomis API
+
+This example is based on the nomisr introduction [vignette](https://cran.r-project.org/web/packages/nomisr/vignettes/introduction.html)
+
+
+```{r}
+#| label: w9_nomisr_setup
+#| message: false
+#| warning: false
+library(nomisr)
+```
+
+First, we can download information on what data is available.
+
+```{r}
+#| cache: TRUE
+#| label: w9_nomisr_info
+data_info <- nomis_data_info()
+#head(data_info)
+glimpse(data_info)
+```
+
+There's a lot here (`data_info` has `r nrow(data_info)` rows). To dig deeper we can search the column `description.value` or `name.value` for key words.
+
+```{r}
+#| label: w9_nomisr_name_search
+pop_data_info <- 
+  data_info %>% 
+  filter(str_detect(name.value, "(?i)population")) %>% 
+  select(id, name.value)
+
+#pop_data_info %>% head()
+glimpse(pop_data_info)
+```
+
+Suppose we wanted population data for Leicester. It looks like "NM_31_1" might be worth investigating, so we can dig down deeper.
+
+The data or is categorised first by "concept" (Read the docs at [nomis](https://www.nomisweb.co.uk/api/v01/help) if you want more details.)
+
+```{r}
+#| label: w9_nomisr_metadata
+id = "NM_31_1"
+nomis_get_metadata(id)
+```
+
+GEOGRAPHY looks relevant, so we explore what "types" are available.
+
+```{r}
+#| label: w9_nomisr_types
+nomis_get_metadata(id, "GEOGRAPHY", type = "type")
+```
+Finally, we can choose a particular type and investigate it.
+
+
+```{r}
+#| label: w9_nomisr_leics
+id %>% 
+  nomis_get_metadata("GEOGRAPHY", type = "TYPE446") %>% 
+  filter(str_detect(label.en, "Leicester"))
+```
+Looks like we've found what we want!
+
+```{r}
+#| label: w9_nomisr_results
+leics_pop <- 
+  nomis_get_data(id = id, time = "latest",
+                 geography = c("1870659636", "1870659640"))
+
+leics_pop %>% 
+  select(DATE, GEOGRAPHY_NAME, SEX_NAME, AGE_NAME, MEASURES_NAME, OBS_VALUE) %>% 
+  head(10)
+```
+
+
+## Homework
+
+Install the package `randNames` and, using the instructions in the package documentation register for a free API key at randomapi.com.
+
+Write a programme to download random data  for 400 imaginary users. What is the distribution of genders and country of origin in this data.
+
+### Optional Christmas Bonus question
+
+Register an account at Advent of Code. For the **2020** competition solve Question 2. (The key to solving this elegantly is reading the data in and wrangling it into the best format to solve the problem.)
+

@@ -1,0 +1,2 @@
+"0","resp <- github_api(""/users/vivait/repos?sort=updated&per_page=100"")"
+"0","vivait_repos <- fromJSON(content(resp, ""text""))"

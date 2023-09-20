@@ -1,0 +1,7 @@
+"0","#| label: w7_pet_df"
+"0","dfpets <- "
+"0","  data.frame(ID = pet_id,"
+"0","             Name = pet_name,"
+"0","             Species = pet_species,"
+"0","             Colour = pet_colour)"
+"0","dfpets"

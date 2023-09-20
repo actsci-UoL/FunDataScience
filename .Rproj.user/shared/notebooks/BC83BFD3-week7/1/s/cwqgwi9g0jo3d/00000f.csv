@@ -1,0 +1,26 @@
+"0","#| label: w7_json2"
+"0","prettify((jpets))"
+"1","[
+    {
+        ""ID"": ""001"",
+        ""Name"": ""Rover"",
+        ""Species"": ""dog"",
+        ""Colour"": ""black""
+    },
+    {
+        ""ID"": ""002"",
+        ""Name"": ""Tiddles"",
+        ""Species"": ""cat"",
+        ""Colour"": ""ginger""
+    },
+    {
+        ""ID"": ""003"",
+        ""Name"": ""Fido"",
+        ""Species"": ""dog"",
+        ""Colour"": ""brownish""
+    }
+]
+"
+"1"," "
+"1","
+"

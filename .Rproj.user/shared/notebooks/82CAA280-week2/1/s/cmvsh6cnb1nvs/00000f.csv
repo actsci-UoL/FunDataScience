@@ -1,0 +1,5 @@
+"0","#| label: w2_map1"
+"0",""
+"0","UK_IRL <- bind_rows(UK, Ireland)"
+"0","m <- ggplot() + geom_sf(data = UK_IRL) # We can plot m now, and add to it later."
+"0","m"

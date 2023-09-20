@@ -1,0 +1,22 @@
+"0","#| label: glimpse_sf_data"
+"0",""
+"0","glimpse(Ireland)"
+"1","Rows: 1"
+"1",""
+"1","
+"
+"1","Columns: 8"
+"1",""
+"1","
+"
+"1","$ OBJECTID_1 [3m[38;5;246m<int>[39m[23m 104
+$ OBJECTID   [3m[38;5;246m<int>[39m[23m 104
+$ name       [3m[38;5;246m<chr>[39m[23m ""Ireland""
+$ Id         [3m[38;5;246m<int>[39m[23m 0
+$ Shape_Leng [3m[38;5;246m<dbl>[39m[23m 71.55104
+$ Shape_Le_1 [3m[38;5;246m<dbl>[39m[23m 71.55104
+$ Shape_Area [3m[38;5;246m<dbl>[39m[23m 9.443232
+$ geometry   [3m[38;5;246m<MULTIPOLYGON [°]>[39m[23m MULTIPOLYGON (((-9.46639 51..."
+"1",""
+"1","
+"
