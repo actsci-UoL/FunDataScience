@@ -1,5 +1,8 @@
 # Joining tables
 
+<a title="Metropolitan Museum of Art
+, CC0, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Roundel_with_Three_Apes_Building_a_Trestle_Table_MET_DT6459.jpg"><img width="256" alt="Roundel with Three Apes Building a Trestle Table MET DT6459" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Roundel_with_Three_Apes_Building_a_Trestle_Table_MET_DT6459.jpg/256px-Roundel_with_Three_Apes_Building_a_Trestle_Table_MET_DT6459.jpg"></a>
+
 ## Overview
 
 This week we'll be looking at how to combine different tables of data.
