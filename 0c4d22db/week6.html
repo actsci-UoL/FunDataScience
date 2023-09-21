@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="These are the course notes for the 2023 version of Fundamentals of Data Science (MA7419 / MA3419)">
+
+<title>Fundamentals of Data Science - 6&nbsp; Clean and ethical data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./week7.html" rel="next">
+<link href="./week5.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Clean and ethical data</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Fundamentals of Data Science</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Getting Set Up</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week1.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Getting started with R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week2.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tabular data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week3.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Group and summarise</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week4.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Working with tidy data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week5.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Joining tables</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Clean and ethical data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week7.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Some other data structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week8.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SQL</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week9.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">APIs</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week10.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Final reports</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="toc-section-number">6.1</span>  Overview</a></li>
+  <li><a href="#working-with-clean-data" id="toc-working-with-clean-data" class="nav-link" data-scroll-target="#working-with-clean-data"><span class="toc-section-number">6.2</span>  Working with clean data</a>
+  <ul class="collapse">
+  <li><a href="#a-hierarchy-for-data-cleaning" id="toc-a-hierarchy-for-data-cleaning" class="nav-link" data-scroll-target="#a-hierarchy-for-data-cleaning">A hierarchy for data cleaning</a></li>
+  </ul></li>
+  <li><a href="#data-regulation" id="toc-data-regulation" class="nav-link" data-scroll-target="#data-regulation"><span class="toc-section-number">6.3</span>  Data regulation</a>
+  <ul class="collapse">
+  <li><a href="#what-is-data-protection" id="toc-what-is-data-protection" class="nav-link" data-scroll-target="#what-is-data-protection">What is Data Protection?</a></li>
+  <li><a href="#the-gdpr-sets-out-seven-key-principles" id="toc-the-gdpr-sets-out-seven-key-principles" class="nav-link" data-scroll-target="#the-gdpr-sets-out-seven-key-principles">The GDPR sets out seven key principles:</a></li>
+  </ul></li>
+  <li><a href="#ethical-standards" id="toc-ethical-standards" class="nav-link" data-scroll-target="#ethical-standards"><span class="toc-section-number">6.4</span>  Ethical Standards</a>
+  <ul class="collapse">
+  <li><a href="#the-ifoa-and-rss-guide-for-ethical-data-science" id="toc-the-ifoa-and-rss-guide-for-ethical-data-science" class="nav-link" data-scroll-target="#the-ifoa-and-rss-guide-for-ethical-data-science">The IFoA and RSS Guide for Ethical Data Science</a></li>
+  <li><a href="#other-ethics-frameworks" id="toc-other-ethics-frameworks" class="nav-link" data-scroll-target="#other-ethics-frameworks">Other ethics frameworks</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Clean and ethical data</span></h1>
+</div>
+
+<div>
+  <div class="description">
+    These are the course notes for the 2023 version of Fundamentals of Data Science <br>(MA7419 / MA3419)
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="overview" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">6.1</span> Overview</h2>
+<p>This week we’ll be looking at two topics:</p>
+<ul>
+<li>preparing less-than-perfect data sets for processing</li>
+<li>regulation and ethics of data science</li>
+</ul>
+</section>
+<section id="working-with-clean-data" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="working-with-clean-data"><span class="header-section-number">6.2</span> Working with clean data</h2>
+<p>Remember the data science pipeline diagram from Week 1?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Images/DataSciencePipeline.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">The Data Science Pipeline diagram</figcaption><p></p>
+</figure>
+</div>
+<p>In this section we’ll be focusing on the part labelled <em>processing code</em>.</p>
+<p>The processing code carries out some, or all of the following functions:</p>
+<ol type="1">
+<li>getting the data</li>
+<li>exploring the structure of the data</li>
+<li>cleaning the data, so it is + technically correct + consistent</li>
+<li>tidying the data</li>
+</ol>
+<p>We’ve already looked at Stages 2 and 4. We’ve also covered some simple methods for Stage 1 - and we will look at more in future weeks. So in this section we’ll be concentrating on Stage 3.</p>
+<section id="technically-correct-data" class="level4">
+<h4 class="anchored" data-anchor-id="technically-correct-data">Technically correct data</h4>
+<p>We define technically correct data <span class="citation" data-cites="deJongeIDCR">(<a href="references.html#ref-deJongeIDCR" role="doc-biblioref">Jonge and Loo 2013</a>)</span> from the point of view of the computer as a dumb machine:</p>
+<ul>
+<li>will the data actually load, or is it just rejected?</li>
+<li>is the data of the right type?</li>
+<li>is missing data correctly represented as NAs?</li>
+<li>are we using the right encoding for character elements?</li>
+</ul>
+<p>Here are some useful rules:</p>
+<ul>
+<li>create headings with no spaces
+<ul>
+<li>use <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html">janitor</a></li>
+</ul></li>
+<li>don’t use row names
+<ul>
+<li>use <a href="https://tibble.tidyverse.org/reference/rownames.html">tibble::rownames_to_column</a></li>
+</ul></li>
+<li>dates in date format
+<ul>
+<li>use <a href="https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html">lubridate</a> if you need to manipulate dates - but you don’t always need to convert (e.g.&nbsp;if you are given a year as an integer, or you are just using the data as a label and the format is fine)</li>
+</ul></li>
+<li>remove columns you don’t need</li>
+<li>if you have time series data, consider a time series package like <code>zoo</code>
+<ul>
+<li>not covered in this module</li>
+</ul></li>
+<li>Strike a balance between doing the minimum necessary to create a dataset that is “clean” enough for the job in hand and one that has every single issue fixed so it can be used without further processing for future tasks.</li>
+<li>Document what you’ve done</li>
+</ul>
+<p>The language around quality control isn’t always consistent in the way different words are used - but I would call this stage data <em>verification</em>.</p>
+</section>
+<section id="consistent-data" class="level4">
+<h4 class="anchored" data-anchor-id="consistent-data">Consistent data</h4>
+<p>The next stage is to make sure the data is <em>consistent</em>. This means: it is internally logically consistent (e.g.&nbsp;if one column can be calculated from others, it agrees with what you would expect); it is consistent with real-world logic; it is consistent with business logic and assumptions (there may be some overlap between those last two).</p>
+<p>Properties of consistent data:</p>
+<ul>
+<li>it is consistent with the column heading</li>
+<li>it has a consistent format</li>
+<li>the same thing always has the same label</li>
+<li>it is logically consistent
+<ul>
+<li>e.g.&nbsp;date_of_birth &lt; date_of_death</li>
+</ul></li>
+<li>it follows “business” rules and assumptions
+<ul>
+<li>e.g.&nbsp;a student id consists of eight digits</li>
+<li>you may need to get a domain expert to give input here</li>
+<li>beware of validation rules that may seem reasonable to you but are actually too restrictive</li>
+</ul></li>
+<li>missing, or invalid data is dealt with appropriately</li>
+</ul>
+<p>With many data sets, the cleaning stage is one of the most time consuming parts of the whole process. In deciding the approach to take, and when the output if good enough, you should think carefully about the requirements of the job and the needs of the end-user. Sometimes you will need 100% correct data and sometimes you won’t. You should also be aware of any regulations - the GDPR (see below) has lots to say about data quality.</p>
+<p>Checking data for consistency is known as data <em>validation</em> . (Compare with the ability to include data validation rules in Excel.) There is a package called <code>validate</code> <span class="citation" data-cites="validate">(<a href="references.html#ref-validate" role="doc-biblioref">Loo and Jonge 2021</a>)</span> that can help.</p>
+<p>Deciding what to do about missing data is often a tricky but crucial decision. Three options are:</p>
+<ul>
+<li>Remove or ignore records with missing data
+<ul>
+<li>be careful when doing this, especially if you decide to remove a whole row (record) because of a single missing column (field)</li>
+</ul></li>
+<li>Try to find another source of information for the missing data</li>
+<li>Fill in the missing items with an estimated value (such as the mean, median or a different modelled value).</li>
+</ul>
+<p>The third option is known as imputation and there is a whole page on CRAN listing R packages in the <a href="https://cran.r-project.org/web/views/MissingData.html">Missing Data Task View</a>.</p>
+</section>
+<section id="a-hierarchy-for-data-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="a-hierarchy-for-data-cleaning">A hierarchy for data cleaning</h3>
+<ol type="1">
+<li>corrections that can be universally applied</li>
+<li>corrections that can be applied to a group identified by a business rule</li>
+<li>ad hoc corrections to single items</li>
+</ol>
+<p>Changes should usually be applied in this order - but remember, it’s an iterative process.</p>
+<p>Always make changes programmatically and document your reasons.</p>
+</section>
+</section>
+<section id="data-regulation" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="data-regulation"><span class="header-section-number">6.3</span> Data regulation</h2>
+<p>The UK data protection regime is set out in the Data Protection Act 2018 (DPA) and the General Data Protection Regulation (GDPR) which also forms part of UK law.</p>
+<p>The source for most of this section is the UK <a href="https://ico.org.uk/%20uk/">Information Commissioner’s Office</a> but the principles apply everywhere.</p>
+<section id="what-is-data-protection" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-data-protection">What is Data Protection?</h3>
+<p>Data protection is about ensuring people can trust you to use their data fairly and responsibly.</p>
+<p>From a 2019 survey:</p>
+<p>Nearly one in three (32%) people have high trust and confidence in companies and organisations storing and using their personal information, which is slightly down from the 34% stating this in 2018.</p>
+<p>The proportion stating ‘none at all’ has marginally increased from 9% to 10%.</p>
+<p>Source: harris interactive <a href="https://ico.org.uk/media/about-the-ico/documents/2615515/ico-trust-and-confidence-report-20190626.pdf">survey</a> for the Information Commissioner’s Office</p>
+<p>Data protection is the fair and proper use of information about people. It’s part of the fundamental right to privacy but on a more practical level, it’s really about building trust between people and organisations. It’s about treating people fairly and openly, recognising their right to have control over their own identity and their interactions with others, and striking a balance with the wider interests of society.</p>
+<p>It’s also about removing unnecessary barriers to trade and co-operation.</p>
+<p>Data protection (trust) is essential to innovation.</p>
+<p>The Data Protection Act covers <strong>personal information</strong>, which means information about a particular living individual.</p>
+<p>It doesn’t need to be ‘private’ information: even information which is public knowledge or is about someone’s professional life can be personal data.</p>
+<p>It doesn’t cover truly anonymous information but if you could still identify someone from the details, or by combining it with other information, it will still count as personal data.</p>
+</section>
+<section id="the-gdpr-sets-out-seven-key-principles" class="level3">
+<h3 class="anchored" data-anchor-id="the-gdpr-sets-out-seven-key-principles">The GDPR sets out seven key principles:</h3>
+<ul>
+<li>Lawfulness, fairness and transparency</li>
+<li>Purpose limitation</li>
+<li>Data minimisation</li>
+<li>Accuracy</li>
+<li>Storage limitation</li>
+<li>Integrity and confidentiality (security)</li>
+<li>Accountability</li>
+</ul>
+<section id="lawfulness-fairness-and-transparency" class="level4">
+<h4 class="anchored" data-anchor-id="lawfulness-fairness-and-transparency">Lawfulness, fairness and transparency</h4>
+<ul>
+<li>You must identify valid grounds under the GDPR (known as a ‘lawful basis’) for collecting and using personal data.</li>
+<li>You must ensure that you do not do anything with the data in breach of any other laws.</li>
+<li>You must use personal data in a way that is fair. This means you must not process the data in a way that is unduly detrimental, unexpected or misleading to the individuals concerned.</li>
+<li>You must be clear, open and honest with people from the start about how you will use their personal data.</li>
+</ul>
+</section>
+<section id="purpose-limitation" class="level4">
+<h4 class="anchored" data-anchor-id="purpose-limitation">Purpose limitation</h4>
+<ul>
+<li>You must be clear about what your purposes for processing are from the start.</li>
+<li>You need to record your purposes as part of your documentation obligations and specify them in your privacy information for individuals.</li>
+<li>You can only use the personal data for a new purpose if either this is compatible with your original purpose, you get consent, or you have a clear obligation or function set out in law.</li>
+</ul>
+</section>
+<section id="data-minimisation" class="level4">
+<h4 class="anchored" data-anchor-id="data-minimisation">Data minimisation</h4>
+<p>You must ensure the personal data you are processing is:</p>
+<ul>
+<li>adequate sufficient to properly fulfil your stated purpose;</li>
+<li>relevant has a rational link to that purpose; and</li>
+<li>limited to what is necessary - you do not hold more than you need for that purpose.</li>
+</ul>
+</section>
+<section id="accuracy" class="level4">
+<h4 class="anchored" data-anchor-id="accuracy">Accuracy</h4>
+<ul>
+<li>You should take all reasonable steps to ensure the personal data you hold is not incorrect or misleading as to any matter of fact.</li>
+<li>You may need to keep the personal data updated, although this will depend on what you are using it for.</li>
+<li>If you discover that personal data is incorrect or misleading, you must take reasonable steps to correct or erase it as soon as possible.</li>
+<li>You must carefully consider any challenges to the accuracy of personal data.</li>
+</ul>
+</section>
+<section id="storage-limitation" class="level4">
+<h4 class="anchored" data-anchor-id="storage-limitation">Storage limitation</h4>
+<ul>
+<li>You must not keep personal data for longer than you need it.</li>
+<li>You need to think about and be able to justify how long you keep personal data. This will depend on your purposes for holding the data.</li>
+<li>You need a policy setting standard retention periods wherever possible, to comply with documentation requirements.</li>
+<li>You should also periodically review the data you hold, and erase or anonymise it when you no longer need it.</li>
+<li>You must carefully consider any challenges to your retention of data.</li>
+<li>Individuals have a right to erasure if you no longer need the data.</li>
+<li>You can keep personal data for longer if you are only keeping it for public interest archiving, scientific or historical research, or statistical purposes.</li>
+</ul>
+</section>
+<section id="integrity-and-confidentiality-security" class="level4">
+<h4 class="anchored" data-anchor-id="integrity-and-confidentiality-security">Integrity and confidentiality (security)</h4>
+<ul>
+<li>You must ensure that you have appropriate security measures in place to protect the personal data you hold.</li>
+</ul>
+</section>
+<section id="accountability" class="level4">
+<h4 class="anchored" data-anchor-id="accountability">Accountability</h4>
+<ul>
+<li>The accountability principle requires you to take responsibility for what you do with personal data and how you comply with the other principles.</li>
+<li>You must have appropriate measures and records in place to be able to demonstrate your compliance.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="ethical-standards" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="ethical-standards"><span class="header-section-number">6.4</span> Ethical Standards</h2>
+<section id="the-ifoa-and-rss-guide-for-ethical-data-science" class="level3">
+<h3 class="anchored" data-anchor-id="the-ifoa-and-rss-guide-for-ethical-data-science">The IFoA and RSS Guide for Ethical Data Science</h3>
+<p>The Institute and Faculty of Actuaries and the Royal Statistical Society have jointly produced a Guide for Ethical Data Science <span class="citation" data-cites="IFoAGEDA">(<a href="references.html#ref-IFoAGEDA" role="doc-biblioref">IFoA and RSS 2019</a>)</span> which is quoted below.</p>
+<p>The Guide has five themes:</p>
+<ul>
+<li>Seek to enhance the value of data science for society</li>
+<li>Avoid harm</li>
+<li>Apply and maintain professional competence</li>
+<li>Seek to preserve or increase trustworthiness</li>
+<li>Maintain accountability and oversight</li>
+</ul>
+<section id="seek-to-enhance-the-value-of-data-science-for-society" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="seek-to-enhance-the-value-of-data-science-for-society">Seek to enhance the value of data science for society</h4>
+<blockquote class="blockquote">
+<p>As the impact that data science can have on society could be significant, an important ethical consideration is what the potential implications could be on society as a whole.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A common theme within ethical frameworks discussing data science and AI is for practitioners to attempt to seek outcomes within their work which support the improvement of public wellbeing. This could involve practitioners seeking to share the benefits of data science and balancing this with the wellbeing of potentially affected individuals.</p>
+</blockquote>
+</section>
+<section id="avoid-harm" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="avoid-harm">Avoid harm</h4>
+<blockquote class="blockquote">
+<p>Data science has the potential to cause harm and this ethical consideration therefore focuses on how practitioners can avoid this by working in a manner that respects the privacy, equality and autonomy of individuals and groups, and speaking up about potential harm or ethical violations.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Practitioners may be subject to legal and regulatory obligations in relation to the privacy of individuals, relevant to the jurisdiction in which they are working, as well as regulatory obligations to speak up about harm or violations of legal requirements.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>This can also be applied to work relating to businesses, animals or the environment, with consideration of commercial rights, animal welfare and the protection of environmental resources.</p>
+</blockquote>
+<p>The recent <a href="https://ec.europa.eu/newsroom/article29/item-detail.cfm?item_id=612053">EU paper on profiling and automatic decision making</a> is of interest in this context.</p>
+</section>
+<section id="apply-and-maintain-professional-competence" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="apply-and-maintain-professional-competence">Apply and maintain professional competence</h4>
+<blockquote class="blockquote">
+<p>This ethical principle expects data science practitioners to apply best practice and comply with all relevant legal and regulatory requirements, as well as applicable professional body codes.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Professional competence involves fully understanding the sources of error and bias in data, using ‘clean’ data (eg edited for missing, inconsistent or erroneous values), and supporting work with robust statistical and algorithmic methods that are appropriate to the question being asked.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Practitioners can also thoroughly assess and balance the benefits of the work versus the risks posed by it, and keep models under regular review.</p>
+</blockquote>
+</section>
+<section id="seek-to-preserve-or-increase-trustworthiness" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="seek-to-preserve-or-increase-trustworthiness">Seek to preserve or increase trustworthiness</h4>
+<blockquote class="blockquote">
+<p>The public’s trust and confidence in the work of data scientists can be affected by the way ethical principles are applied. Practitioners can help to increase the trustworthiness of their work by considering ethical principles throughout all stages of a project.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>This is another reoccurring theme that encourages practitioners to be transparent and honest when communicating about the way data is used. Transparency can include fully explaining how algorithms are being used, if and why any decisions have been delegated, and being open about the risks and biases.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Engaging widely with a diverse range of stakeholders and considering public perceptions both from the outset, and throughout projects, can help to build trustworthiness and ensure all potential biases are understood.</p>
+</blockquote>
+</section>
+<section id="maintain-accountability-and-oversight" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="maintain-accountability-and-oversight">Maintain accountability and oversight</h4>
+<blockquote class="blockquote">
+<p>Another key issue in data ethics around automation and AI is the question of how practitioners maintain human accountability and oversight within their work.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Being accountable can include being mindful of how and when to delegate any decision making to systems, and having governance in place to ensure systems deliver the intended objectives.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>When deciding to delegate any decision making, it would be useful to fully understand and explain the potential implications of doing so, as the work could lead to introducing advanced AI systems which do not have adequate governance. Practitioners should note that delegating any decisions to these systems does not remove any of their individual responsibilities.</p>
+</blockquote>
+</section>
+</section>
+<section id="other-ethics-frameworks" class="level3">
+<h3 class="anchored" data-anchor-id="other-ethics-frameworks">Other ethics frameworks</h3>
+<p>You should research any other ethical frameworks relevant to the jurisdiction and professional area you’re working in.</p>
+<p>For example, the UK Government has published a <a href="https://www.gov.uk/government/publications/data-ethics-framework">Data Ethics Framework.</a></p>
+<p>And here is a link to the IEEE’s work on the <a href="https://standards.ieee.org/industry-connections/ec/autonomous-systems.html">ethics of autonomous and intelligent systems.</a></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
+<div id="ref-IFoAGEDA" class="csl-entry" role="doc-biblioentry">
+IFoA, and RSS. 2019. <span>“A Guide to Ethical Data Science.”</span> Institute; Faculty of Actuaries; Royal Statistical Society. <a href="https://www.actuaries.org.uk/system/files/field/document/An%20Ethical%20Charter%20for%20Date%20Science%20WEB%20FINAL.PDF">https://www.actuaries.org.uk/system/files/field/document/An%20Ethical%20Charter%20for%20Date%20Science%20WEB%20FINAL.PDF</a>.
+</div>
+<div id="ref-deJongeIDCR" class="csl-entry" role="doc-biblioentry">
+Jonge, E. de, and M. van der Loo. 2013. <span>“An Introduction to Data Cleaning with r.”</span> Discussion Paper / Statistics Netherlands. Statistics Netherlands. <a href="https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf">https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf</a>.
+</div>
+<div id="ref-validate" class="csl-entry" role="doc-biblioentry">
+Loo, Mark P. J. van der, and Edwin de Jonge. 2021. <span>“Data Validation Infrastructure for r.”</span> <em>Journal of Statistical Software</em> 97 (10): 1–31. <a href="https://doi.org/10.18637/jss.v097.i10">https://doi.org/10.18637/jss.v097.i10</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./week5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Joining tables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./week7.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Some other data structures</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
