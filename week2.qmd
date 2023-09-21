@@ -75,6 +75,8 @@ head(girls, 10)
 
 (Data downloaded from the [ONS](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/livebirths/datasets/babynamesenglandandwalesbabynamesstatisticsgirls))
 
+__Questions for you:__ Is this the most up to date list? Can you find a similar list from another country?
+
 Data in Excel files can be read in similarly.
 
 ```{r}

@@ -42,13 +42,7 @@ You might also want to start reading R Programming for Data Science [@pengRP4DS]
 
 Subscriptions are usually about 30 USD per month but we have arranged for you to have free access for the duration of this module.
 
-Using the link below you can register for an account and use the resources there to improve your R skills. (You will need your university email address for this one, but do not use your University password.)
-
-[MA7419 link](https://www.datacamp.com/groups/shared_links/cfa3e95a33bba921a0a377da3e6a04ef3a5419e39de8246c7f0ee254a324f580)
-
-**IMPORTANT NOTE: if you are a student on MA3419, please do not use the link above. Please use the link you have been given for MA3515:**
-
-[MA3419 link](https://www.datacamp.com/groups/shared_links/b081ae6b059923f36ffbc6cb8150b3a195e59406ee078459e0e76b53ceaba4a4)
+Using the link you can find in the Blackboard site you can register for an account and use the resources there to improve your R skills. (You will need your university email address for this one, but do not use your University password.)
 
 We've found that the DataCamp system can take a while to recognise you've signed in with a free account. You might well find that after completing a few free chapters you are invited to sign up for a paid subscription. **DO NOT DO THIS.** Instead you should just log out and go back in 24 hours, when you should find you can access everything for free.
 
@@ -62,4 +56,7 @@ There are a lot of students on this module and just one lecturer and a few TAs. 
 2.  Be nice.
 3.  Acknowledge help you get from others. (If someone has been particularly helpful - or nice - let us all know on the forum or email me.)
 4.  Don't plagiarise, don't collaborate if you have been asked not to, and don't perform any other form of academic misconduct. You will almost certainly cut and paste code written by other people - acknowledge its source. The one exception is that you don't have to acknowledge the source of every bit of code you are given in this course - that could get tedious.
-5.  Help each other.
+5.  Respect other people's right to an undisturbed lecture.
+6.  Help each other.
+
+__Question for you:__ Is this a good list? What should be added or taken away?

@@ -90,6 +90,9 @@ For example, the Github documentation says _You can issue a GET request to the r
 head(fromJSON("https://api.github.com"), 10)
 ```
 ## Twitter example
+__NOTE the Twitter (X) API examples below, no longer work (thanks Elon)__
+
+__They will be replaced soon.__
 
 ```{r}
 #| label: w9_twitter_API
