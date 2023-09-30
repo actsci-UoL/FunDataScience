@@ -27,11 +27,13 @@ By the end of this module you will be confident in handling data in a collaborat
 
 The specific objectives for this week are:
 
-1. Be able to access your R Server account
-2. Successfully upload Task 1 from Blackboard to the server
+1. Access your R Server account
+2. Upload Task 1 from Blackboard to the server
 3. Complete the exercises in the Week 1 task
 4. Knit to HTML and download HTML and RMD files
-5. Submit RMD and HTML files on Blackboard
+5. Complete the Week 1 Blackboard test
+6. Submit RMD and HTML files on Blackboard
+7. Complete the Week 1 Reflective Survey
 
 ### Problem-based learning
 
@@ -50,21 +52,22 @@ This is much more like the way things happen in real life.
     + paul.king@leicester.ac.uk
     + No set office hours: email for an appointment
   - Your friendly TAs
-    + Ahmed Dogar - ajd67.le.ac.uk
+    + Silvia Freund - skf10.le.ac.uk
     + Ibrahim Issahaku - iai5@le.ac.uk
-    + Daniel Lozano Rojas - dlr10@le.ac.uk
+
 
 
 ### Class times
 
-  - Tuesday 13:00 - 14:00, Attenborough Building Lecture Theatre 1
-  - Wednesday 12:00 - 13:00, On-line - see the Teams invite on Blackboard
-  - Thursday 13:00 - 14:00, Various computer labs
+  - Tuesday 12:00 - 13:00, Rattray Lecture Theatre (please enter through upper doors)
+  - Wednesday 11:00 - 13:00, Computer Labs
+    + Charles Wilson 304/305 for undergraduates and ASDA
+    + Sir Bob Burgess 0.04 for DABI
   
 ### How this module works
 
   - A certain amount of lecturing (mostly on Tuesdays)
-  - A lot of group problem solving (mostly on Wednesdays and Thursdays)
+  - A lot of group problem solving (on Wednesday)
   - A lot of self study: using the reading list and other on-line resources
   - Additional resources:
     + Data Science Club (if you want to run one!)
@@ -83,11 +86,13 @@ I'll create a separate chat for general questions about the course. Please try t
 
 ### Submitting your weekly work
 
-When you've completed the weekly task, please submit both your RMD and HTML files via the assignment links on Blackboard.
+When you've completed the weekly task, please submit both your RMD and HTML (sometimes you will be asked for PDF) files via the assignment links on Blackboard.
 
 You should also complete the short weekly Blackboard test. This is based on the answers in the exercises, but will sometimes require some extra thinking or research.
 
-Finally, you should complete the weekly questionnaire. This is designed to act as a prompt for you to reflect on your week's work. It also gives us a useful indicator of who might need extra help.
+Finally, you should complete the weekly reflective survey. This is designed to act as a prompt for you to reflect on your week's work. It also gives us a useful indicator of who might need extra help.
+
+Links to the test and the survey are in the Blackboard section (the Blackboard term is a Learning Module).
 
 All of the above are important "formative" activities to help you learn, give you feedback on your progress, and motivate you to keep up with the work. The School will use them as part of the way it monitors your engagement with the module.
 
@@ -124,6 +129,8 @@ R for Data Science [@wickhamR4DS]:
 R Programming for Data Science [@pengRP4DS]:
 
   - Chapter 13 _R nuts & bolts_
+  
+Your own research
 
 
 ## Reproducible data science
@@ -238,6 +245,30 @@ Sometimes there will also be a data file supplied - you should copy this into yo
 
 Sometimes I'll work through parts of the task during the Tuesday lecture, and every week I'll give feedback on the most common mistakes in the previous week's task. There will also be exercises embedded in the notes for you to complete.
 
-Your target should be to complete all the exercises in each weekly task, and submit your answers on Blackboard for feedback. I'll also release the correct code for the week's task at the end of the week.
+Your target should be to complete all the exercises in each weekly task, and submit your answers on Blackboard. You should also do the week's Blackboard test for feedback
+
+I'll release the correct code for the previous week's task on Monday morning, this will include feedback notes based on the submissions where I think that will help. 
 
 Occasionally there will be _challenge exercises_ or _challenge tasks_ - these are optional.
+
+## Addendum 1: R Markdown vs Quarto
+
+As you reseach material online you'll come across references to both R Markdown and Quarto. You'll also see the option to create Quarto documents (along with a lot of other options) when you start a new file in R Studio.
+
+R markdown is the original format which is gradually being replaced by Quarto. 
+
+For our purposes there is very little difference and we'll stick with R Markdown.
+
+You can try it for yourself. Go to __File > New File__ and create two new files: one using R Markdown, and one using Quarto Document.
+
+Look at the starter code provided (you don't need to save them) and try to spot the difference.
+
+You are welcome to use the Quarto format when you create your own new files, but the weekly tasks are in R Markdown format and we'll stick with that for now. (Although these notes are actually written in Quarto.)
+
+## Addendum 2: R vs Python
+
+Python is an important language for data science and machine learning and I always get asked if you can use Python instead of R.
+
+The short answer is "no", because one of the objectives of this module is for you to learn R.
+
+However, I'm keen to explore the possibility of creating a Python version of this course so if you are interested on working on creating Python code to reproduce the examples and tasks (perhaps as part of a Data Science Club), please email me.

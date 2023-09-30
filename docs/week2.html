@@ -257,6 +257,7 @@ div.csl-indent {
   <li><a href="#reading-data-from-a-tabular-file" id="toc-reading-data-from-a-tabular-file" class="nav-link" data-scroll-target="#reading-data-from-a-tabular-file"><span class="toc-section-number">2.4</span>  Reading data from a tabular file</a></li>
   <li><a href="#documentation-and-help" id="toc-documentation-and-help" class="nav-link" data-scroll-target="#documentation-and-help"><span class="toc-section-number">2.5</span>  Documentation and help</a></li>
   <li><a href="#simple-plots-with-ggplot" id="toc-simple-plots-with-ggplot" class="nav-link" data-scroll-target="#simple-plots-with-ggplot"><span class="toc-section-number">2.6</span>  Simple plots with ggplot</a></li>
+  <li><a href="#question-for-you" id="toc-question-for-you" class="nav-link" data-scroll-target="#question-for-you">Question for you</a></li>
   <li><a href="#simple-maps-with-ggplot" id="toc-simple-maps-with-ggplot" class="nav-link" data-scroll-target="#simple-maps-with-ggplot"><span class="toc-section-number">2.7</span>  Simple maps with ggplot</a></li>
   <li><a href="#week-2-task" id="toc-week-2-task" class="nav-link" data-scroll-target="#week-2-task"><span class="toc-section-number">2.8</span>  Week 2 Task</a></li>
   </ul>
@@ -420,6 +421,35 @@ div.csl-indent {
 </div>
 <p>For a quick and easy guide to producing many types of plots see the R Graphics Cookbook <span class="citation" data-cites="changRGC">(<a href="references.html#ref-changRGC" role="doc-biblioref">Chang 2020</a>)</span>.</p>
 </section>
+<section id="question-for-you" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="question-for-you">Question for you</h2>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+How can you add a title to a chart change the axis labels?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use <code>ggtitle()</code>, <code>xlab()</code> and <code>ylab()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> sex), <span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Starwars characters by sex"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Sex"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Number"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="week2_files/figure-html/w2_check_understanding1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="simple-maps-with-ggplot" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="simple-maps-with-ggplot"><span class="header-section-number">2.7</span> Simple maps with ggplot</h2>
 <p>There’s no denying that manipulating and visualizing spatial data can be very complex and most of the techniques are far beyond the scope of this course. But it’s such a powerful visualization method that I thought it was important to give you a way to get started by plotting points on a simple map.</p>
@@ -430,17 +460,17 @@ div.csl-indent {
 <p>We are going to use low resolution country boundary shapefiles from <a href="https://hub.arcgis.com/datasets/bff789530b964a76938de17824165ceb_0/data" target="&quot;_blamk">here</a>. (I’ve already downloaded files for the UK and Ireland and put them in Blackboard.)</p>
 <p>The first bit of code reads in two files and converts them to <code>sf</code> objects.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Ireland <span class="ot">&lt;-</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">"_Data"</span>, <span class="st">"Ireland_Boundaries-shp"</span>, <span class="st">"Country_Boundaries.shp"</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>UK <span class="ot">&lt;-</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">"_Data"</span>, <span class="st">"UK_Boundaries-shp"</span>, <span class="st">"Country_Boundaries.shp"</span>),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Ireland <span class="ot">&lt;-</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">"_Data"</span>, <span class="st">"Ireland_Boundaries-shp"</span>, <span class="st">"Country_Boundaries.shp"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>UK <span class="ot">&lt;-</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">"_Data"</span>, <span class="st">"UK_Boundaries-shp"</span>, <span class="st">"Country_Boundaries.shp"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s look at what’s inside one of these <code>sf</code> objects.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Ireland)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Ireland)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1
 Columns: 8
@@ -457,18 +487,18 @@ $ geometry   &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-9.46639 51...</code></pr
 <p>We can see there is only one row and 8 columns. The row contains attributes and geometry information about a single feature - crucially it contains geometry information which, in this case defines a set of polygons which make up the boundary of Ireland.</p>
 <p>Since they came from the same source, the UK file contains the same columns, so we can stick them together to create a single object which we can then plot using the <code>sf_geom</code> provided by <code>ggplot2</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>UK_IRL <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(UK, Ireland)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">data =</span> UK_IRL) <span class="co"># We can plot m now, and add to it later.</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>UK_IRL <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(UK, Ireland)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="at">data =</span> UK_IRL) <span class="co"># We can plot m now, and add to it later.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>m</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="week2_files/figure-html/w2_map1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>To demonstrate how we can add additional points to this data, we’ll add the cities we listed above to the map. We’ll also change the limits of the plot to zoom in on the South East of the country.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> cities, <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">52</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>m <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> cities, <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude)) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">52</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="week2_files/figure-html/w2_map2-1.png" class="img-fluid" width="672"></p>
 </div>

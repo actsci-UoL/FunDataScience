@@ -146,6 +146,23 @@ ggplot(plot_data) +
 ```
 For a quick and easy guide to producing many types of plots see the R Graphics Cookbook [@changRGC].
 
+## Question for you{.unnumbered}
+
+:::{.callout-tip collapse="true"}
+## How can you add a title to a chart change the axis labels?
+
+Use `ggtitle()`, `xlab()` and `ylab()`.
+
+```{r}
+#| label: w2_check_understanding1
+ggplot(plot_data) + 
+  geom_bar(aes(x = sex), fill = "skyblue") +
+  ggtitle("Number of Starwars characters by sex") +
+  xlab("Sex") +
+  ylab("Number")
+```
+:::
+
 ## Simple maps with ggplot
 
 There's no denying that manipulating and visualizing spatial data can be very complex and most of the techniques are far beyond the scope of this course. But it's such a powerful visualization method that I thought it was important to give you a way to get started by plotting points on a simple map.

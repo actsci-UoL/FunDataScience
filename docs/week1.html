@@ -213,6 +213,8 @@ div.csl-indent {
   <li><a href="#more-resources" id="toc-more-resources" class="nav-link" data-scroll-target="#more-resources"><span class="toc-section-number">1.4</span>  More resources</a></li>
   <li><a href="#setting-up-your-r-environment." id="toc-setting-up-your-r-environment." class="nav-link" data-scroll-target="#setting-up-your-r-environment."><span class="toc-section-number">1.5</span>  Setting up your R environment.</a></li>
   <li><a href="#week-1-task" id="toc-week-1-task" class="nav-link" data-scroll-target="#week-1-task"><span class="toc-section-number">1.6</span>  Week 1 Task</a></li>
+  <li><a href="#addendum-1-r-markdown-vs-quarto" id="toc-addendum-1-r-markdown-vs-quarto" class="nav-link" data-scroll-target="#addendum-1-r-markdown-vs-quarto"><span class="toc-section-number">1.7</span>  Addendum 1: R Markdown vs Quarto</a></li>
+  <li><a href="#addendum-2-r-vs-python" id="toc-addendum-2-r-vs-python" class="nav-link" data-scroll-target="#addendum-2-r-vs-python"><span class="toc-section-number">1.8</span>  Addendum 2: R vs Python</a></li>
   </ul>
 </nav>
     </div>
@@ -265,11 +267,13 @@ div.csl-indent {
 <p>…data</p>
 <p>The specific objectives for this week are:</p>
 <ol type="1">
-<li>Be able to access your R Server account</li>
-<li>Successfully upload Task 1 from Blackboard to the server</li>
+<li>Access your R Server account</li>
+<li>Upload Task 1 from Blackboard to the server</li>
 <li>Complete the exercises in the Week 1 task</li>
 <li>Knit to HTML and download HTML and RMD files</li>
+<li>Complete the Week 1 Blackboard test</li>
 <li>Submit RMD and HTML files on Blackboard</li>
+<li>Complete the Week 1 Reflective Survey</li>
 </ol>
 </section>
 <section id="problem-based-learning" class="level3">
@@ -290,25 +294,27 @@ div.csl-indent {
 </ul></li>
 <li>Your friendly TAs
 <ul>
-<li>Ahmed Dogar - ajd67.le.ac.uk</li>
+<li>Silvia Freund - skf10.le.ac.uk</li>
 <li>Ibrahim Issahaku - iai5@le.ac.uk</li>
-<li>Daniel Lozano Rojas - dlr10@le.ac.uk</li>
 </ul></li>
 </ul>
 </section>
 <section id="class-times" class="level3">
 <h3 class="anchored" data-anchor-id="class-times">Class times</h3>
 <ul>
-<li>Tuesday 13:00 - 14:00, Attenborough Building Lecture Theatre 1</li>
-<li>Wednesday 12:00 - 13:00, On-line - see the Teams invite on Blackboard</li>
-<li>Thursday 13:00 - 14:00, Various computer labs</li>
+<li>Tuesday 12:00 - 13:00, Rattray Lecture Theatre (please enter through upper doors)</li>
+<li>Wednesday 11:00 - 13:00, Computer Labs
+<ul>
+<li>Charles Wilson 304/305 for undergraduates and ASDA</li>
+<li>Sir Bob Burgess 0.04 for DABI</li>
+</ul></li>
 </ul>
 </section>
 <section id="how-this-module-works" class="level3">
 <h3 class="anchored" data-anchor-id="how-this-module-works">How this module works</h3>
 <ul>
 <li>A certain amount of lecturing (mostly on Tuesdays)</li>
-<li>A lot of group problem solving (mostly on Wednesdays and Thursdays)</li>
+<li>A lot of group problem solving (on Wednesday)</li>
 <li>A lot of self study: using the reading list and other on-line resources</li>
 <li>Additional resources:
 <ul>
@@ -329,9 +335,10 @@ div.csl-indent {
 </section>
 <section id="submitting-your-weekly-work" class="level3">
 <h3 class="anchored" data-anchor-id="submitting-your-weekly-work">Submitting your weekly work</h3>
-<p>When you’ve completed the weekly task, please submit both your RMD and HTML files via the assignment links on Blackboard.</p>
+<p>When you’ve completed the weekly task, please submit both your RMD and HTML (sometimes you will be asked for PDF) files via the assignment links on Blackboard.</p>
 <p>You should also complete the short weekly Blackboard test. This is based on the answers in the exercises, but will sometimes require some extra thinking or research.</p>
-<p>Finally, you should complete the weekly questionnaire. This is designed to act as a prompt for you to reflect on your week’s work. It also gives us a useful indicator of who might need extra help.</p>
+<p>Finally, you should complete the weekly reflective survey. This is designed to act as a prompt for you to reflect on your week’s work. It also gives us a useful indicator of who might need extra help.</p>
+<p>Links to the test and the survey are in the Blackboard section (the Blackboard term is a Learning Module).</p>
 <p>All of the above are important “formative” activities to help you learn, give you feedback on your progress, and motivate you to keep up with the work. The School will use them as part of the way it monitors your engagement with the module.</p>
 <p>However, none of the marks count toward the final assessment for the module. (Assessments that count for that are called “summative”.)</p>
 </section>
@@ -370,6 +377,7 @@ div.csl-indent {
 <ul>
 <li>Chapter 13 <em>R nuts &amp; bolts</em></li>
 </ul>
+<p>Your own research</p>
 </section>
 <section id="reproducible-data-science" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="reproducible-data-science"><span class="header-section-number">1.3</span> Reproducible data science</h2>
@@ -495,8 +503,24 @@ Note
 </div>
 <p>Sometimes there will also be a data file supplied - you should copy this into your project’s Data folder.</p>
 <p>Sometimes I’ll work through parts of the task during the Tuesday lecture, and every week I’ll give feedback on the most common mistakes in the previous week’s task. There will also be exercises embedded in the notes for you to complete.</p>
-<p>Your target should be to complete all the exercises in each weekly task, and submit your answers on Blackboard for feedback. I’ll also release the correct code for the week’s task at the end of the week.</p>
+<p>Your target should be to complete all the exercises in each weekly task, and submit your answers on Blackboard. You should also do the week’s Blackboard test for feedback</p>
+<p>I’ll release the correct code for the previous week’s task on Monday morning, this will include feedback notes based on the submissions where I think that will help.</p>
 <p>Occasionally there will be <em>challenge exercises</em> or <em>challenge tasks</em> - these are optional.</p>
+</section>
+<section id="addendum-1-r-markdown-vs-quarto" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="addendum-1-r-markdown-vs-quarto"><span class="header-section-number">1.7</span> Addendum 1: R Markdown vs Quarto</h2>
+<p>As you reseach material online you’ll come across references to both R Markdown and Quarto. You’ll also see the option to create Quarto documents (along with a lot of other options) when you start a new file in R Studio.</p>
+<p>R markdown is the original format which is gradually being replaced by Quarto.</p>
+<p>For our purposes there is very little difference and we’ll stick with R Markdown.</p>
+<p>You can try it for yourself. Go to <strong>File &gt; New File</strong> and create two new files: one using R Markdown, and one using Quarto Document.</p>
+<p>Look at the starter code provided (you don’t need to save them) and try to spot the difference.</p>
+<p>You are welcome to use the Quarto format when you create your own new files, but the weekly tasks are in R Markdown format and we’ll stick with that for now. (Although these notes are actually written in Quarto.)</p>
+</section>
+<section id="addendum-2-r-vs-python" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="addendum-2-r-vs-python"><span class="header-section-number">1.8</span> Addendum 2: R vs Python</h2>
+<p>Python is an important language for data science and machine learning and I always get asked if you can use Python instead of R.</p>
+<p>The short answer is “no”, because one of the objectives of this module is for you to learn R.</p>
+<p>However, I’m keen to explore the possibility of creating a Python version of this course so if you are interested on working on creating Python code to reproduce the examples and tasks (perhaps as part of a Data Science Club), please email me.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">

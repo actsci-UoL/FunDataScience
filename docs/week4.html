@@ -310,14 +310,14 @@ div.csl-indent {
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  Name     Test  Score
-  &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
-1 Tiddles     1 -1.37 
-2 Rover       1 -0.434
-3 Tiddles     2  0.790
-4 Rover       2  0.944
-5 Tiddles     3 -1.24 
-6 Rover       3 -0.326</code></pre>
+  Name     Test   Score
+  &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;
+1 Tiddles     1 -0.307 
+2 Rover       1 -0.734 
+3 Tiddles     2  0.0105
+4 Rover       2  0.482 
+5 Tiddles     3  0.881 
+6 Rover       3  0.0718</code></pre>
 </div>
 </div>
 <p>And here’s the same data in a non-tidy (wide) format.</p>
@@ -333,8 +333,8 @@ div.csl-indent {
 <pre><code># A tibble: 2 × 4
   Name    Test_1 Test_2 Test_3
   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 Tiddles -1.37   0.790 -1.24 
-2 Rover   -0.434  0.944 -0.326</code></pre>
+1 Tiddles -0.307 0.0105 0.881 
+2 Rover   -0.734 0.482  0.0718</code></pre>
 </div>
 </div>
 <p>The functions in the <code>tidyverse</code> (notably <code>ggplot</code>) expect data in a tidy format but the wider format is often easier for people to read or to use when entering data.</p>
@@ -348,14 +348,14 @@ div.csl-indent {
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  Name    Test   Score
-  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
-1 Tiddles 1     -1.37 
-2 Tiddles 2      0.790
-3 Tiddles 3     -1.24 
-4 Rover   1     -0.434
-5 Rover   2      0.944
-6 Rover   3     -0.326</code></pre>
+  Name    Test    Score
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 Tiddles 1     -0.307 
+2 Tiddles 2      0.0105
+3 Tiddles 3      0.881 
+4 Rover   1     -0.734 
+5 Rover   2      0.482 
+6 Rover   3      0.0718</code></pre>
 </div>
 </div>
 <p>For more details, see the <a href="https://tidyr.tidyverse.org/articles/pivot.html">pivot vignette</a>.</p>
