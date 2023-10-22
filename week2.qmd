@@ -149,7 +149,7 @@ For a quick and easy guide to producing many types of plots see the R Graphics C
 ## Question for you{.unnumbered}
 
 :::{.callout-tip collapse="true"}
-## How can you add a title to a chart change the axis labels?
+## How can you add a title to a chart and change the axis labels?
 
 Use `ggtitle()`, `xlab()` and `ylab()`.
 
@@ -227,5 +227,5 @@ At this scale we can see the low resolution of the boundary information.
 
 ## Week 2 Task
 
-The task for Week 2 can be found in the Week 2 folder on Blackboard.
+The task for Week 2 can be found in the Week 2 folder on Blackboard. This week you should knit your file to PDF and upload the RMD and PDF files.
 

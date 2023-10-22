@@ -5,7 +5,7 @@ project:
 book:
   title: "Fundamentals of Data Science"
   author: "Paul King"
-  date: "21 September 2023"
+  date: "22 October 2023"
   chapters:
     - index.qmd
     - week1.qmd

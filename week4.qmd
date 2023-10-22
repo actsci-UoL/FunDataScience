@@ -128,14 +128,14 @@ _R Programming for Data Science_ [@pengRP4DS]:
 ## Check your understanding{.unnumbered}
 
 :::{.callout-tip collapse="true"}
-## In the regular expression "\\d{4}", why are there two backslashes?
+## In the regular expression "\\\\d{4}", why are there two backslashes?
 
 This is a peculiarity of using regular expressions in R. The first backslash tells R to treat the second backslash as a 'backslash' and not a special character.
 :::
 
 
 :::{.callout-tip collapse="true"}
-## What pattern would "\\D{4}" match?
+## What pattern would "\\\\D{4}" match?
 
 This would match any four characters that are NOT digits. (See also w vs W - i.e. lower-case w vs upper-case W).
 :::
