@@ -49,7 +49,7 @@ And here's the same data in a non-tidy (wide) format.
 
 ```{r}
 wide_df <- 
-  tidy_df %>% 
+  tidy_df |> 
     pivot_wider(names_from = Test, 
                 names_prefix = "Test_", 
                 values_from = Score)
@@ -62,7 +62,7 @@ The functions in the `tidyverse` (notably `ggplot`) expect data in a tidy format
 As you've just seen, the `pivot_wider()` function takes us from tidy (aka "longer") format to a wider format. We can go back with `pivot_longer()`. Notice that the parameters are matched to those in the 'pivot wider()' example above.
 
 ```{r}
-wide_df %>% 
+wide_df |> 
   pivot_longer(cols = !Name,              # Apply to all columns except Name
                names_to = "Test",
                names_prefix = "Test_",    # Remove this from the names.
@@ -84,14 +84,14 @@ The simplest search would be to see if `target` contains the string "Paul", like
 ```{r}
 library(stringr)
 target <- "Paul wrote this in 2020."
-target %>% 
+target |> 
   str_detect(pattern = "Paul")
 ```
 
 Or we could extract the year contained in the target using a pattern that finds any string of exactly 4 digits.
 
 ```{r}
-target %>% 
+target |> 
   str_extract(pattern = "\\d{4}")
 ```
 

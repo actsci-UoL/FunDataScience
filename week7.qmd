@@ -106,16 +106,16 @@ xml_find_first(xpets, '//pet[@species="cat"]') # Find the first cat
 
 ```{r}
 #| label: w7_find_dogs
-xpets %>% 
-      xml_find_all("//pet[@species='dog']") %>% # List the dogs' names
-      xml_find_all(".//tag") %>%                # Note the important .
+xpets |> 
+      xml_find_all("//pet[@species='dog']") |> # List the dogs' names
+      xml_find_all(".//tag") |>                # Note the important .
       xml_text()
 ```
 
 ```{r}
 #| label: w7_find_dogs2
-xpets %>%
-  xml_find_all(".//pet[@species='dog']") %>%
+xpets |>
+  xml_find_all(".//pet[@species='dog']") |>
   xml_attr("id")
 ```
 
@@ -126,32 +126,32 @@ By extracting each quantity we want separately we can put together a data frame.
 ```{r}
 #| label: w7_pet_ids
 pet_id <- 
-xpets %>%
-  xml_find_all(".//pet") %>%
+xpets |>
+  xml_find_all(".//pet") |>
   xml_attr("id")
 ```
 
 ```{r}
 #| label: w7_pet_species
 pet_species <- 
-xpets %>%
-  xml_find_all(".//pet") %>%
+xpets |>
+  xml_find_all(".//pet") |>
   xml_attr("species")
 ```
 
 ```{r}
 #| label: w7_pet_names
 pet_name <- 
-  xpets %>% 
-  xml_find_all(".//pet/tag") %>% 
+  xpets |> 
+  xml_find_all(".//pet/tag") |> 
   xml_text()
 ```
 
 ```{r}
 #| label: w7_pet_colour
 pet_colour <- 
-  xpets %>% 
-  xml_find_all(".//pet/colour") %>% 
+  xpets |> 
+  xml_find_all(".//pet/colour") |> 
   xml_text()
 ```
 

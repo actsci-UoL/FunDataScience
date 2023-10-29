@@ -137,15 +137,15 @@ We can search for tweets including a particular hashtag.
 # rt <- search_tweets("#Cardano", n = 100, include_rts = FALSE)
 # 
 # ## preview tweets data
-# rt %>% select(id, text)
+# rt |> select(id, text)
 ```
 ### Trending in Leicester
 
 ```{r}
 #| label: w9_twitter_API4
 # trnds <- get_trends("Leicester")
-# trnds %>% 
-#   select(trend, tweet_volume) %>% 
+# trnds |> 
+#   select(trend, tweet_volume) |> 
 #   arrange(desc(tweet_volume))
 ```
 
@@ -156,8 +156,8 @@ We can search for tweets including a particular hashtag.
 library(stringr)
 # tmls <- get_timeline("leicspolice", n = 100)
 # 
-# tmls %>% 
-#   select(created_at, text) %>% 
+# tmls |> 
+#   select(created_at, text) |> 
 #   filter(str_detect(text, 'Traffic'))
 ```
 
@@ -192,11 +192,11 @@ There's a lot here (`data_info` has `r nrow(data_info)` rows). To dig deeper we 
 ```{r}
 #| label: w9_nomisr_name_search
 pop_data_info <- 
-  data_info %>% 
-  filter(str_detect(name.value, "(?i)population")) %>% 
+  data_info |> 
+  filter(str_detect(name.value, "(?i)population")) |> 
   select(id, name.value)
 
-#pop_data_info %>% head()
+#pop_data_info |> head()
 glimpse(pop_data_info)
 ```
 
@@ -221,8 +221,8 @@ Finally, we can choose a particular type and investigate it.
 
 ```{r}
 #| label: w9_nomisr_leics
-id %>% 
-  nomis_get_metadata("GEOGRAPHY", type = "TYPE446") %>% 
+id |> 
+  nomis_get_metadata("GEOGRAPHY", type = "TYPE446") |> 
   filter(str_detect(label.en, "Leicester"))
 ```
 Looks like we've found what we want!
@@ -233,8 +233,8 @@ leics_pop <-
   nomis_get_data(id = id, time = "latest",
                  geography = c("1870659636", "1870659640"))
 
-leics_pop %>% 
-  select(DATE, GEOGRAPHY_NAME, SEX_NAME, AGE_NAME, MEASURES_NAME, OBS_VALUE) %>% 
+leics_pop |> 
+  select(DATE, GEOGRAPHY_NAME, SEX_NAME, AGE_NAME, MEASURES_NAME, OBS_VALUE) |> 
   head(10)
 ```
 
