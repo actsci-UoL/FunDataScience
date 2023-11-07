@@ -310,14 +310,14 @@ div.csl-indent {
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  Name     Test   Score
-  &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;
-1 Tiddles     1 -0.470 
-2 Rover       1 -0.161 
-3 Tiddles     2  0.0958
-4 Rover       2 -2.14  
-5 Tiddles     3  2.49  
-6 Rover       3  0.553 </code></pre>
+  Name     Test  Score
+  &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
+1 Tiddles     1  0.726
+2 Rover       1 -0.926
+3 Tiddles     2 -1.75 
+4 Rover       2  0.258
+5 Tiddles     3  0.757
+6 Rover       3 -0.484</code></pre>
 </div>
 </div>
 <p>And here’s the same data in a non-tidy (wide) format.</p>
@@ -331,10 +331,10 @@ div.csl-indent {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>wide_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
-  Name    Test_1  Test_2 Test_3
-  &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
-1 Tiddles -0.470  0.0958  2.49 
-2 Rover   -0.161 -2.14    0.553</code></pre>
+  Name    Test_1 Test_2 Test_3
+  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Tiddles  0.726 -1.75   0.757
+2 Rover   -0.926  0.258 -0.484</code></pre>
 </div>
 </div>
 <p>The functions in the <code>tidyverse</code> (notably <code>ggplot</code>) expect data in a tidy format but the wider format is often easier for people to read or to use when entering data.</p>
@@ -348,14 +348,14 @@ div.csl-indent {
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  Name    Test    Score
-  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
-1 Tiddles 1     -0.470 
-2 Tiddles 2      0.0958
-3 Tiddles 3      2.49  
-4 Rover   1     -0.161 
-5 Rover   2     -2.14  
-6 Rover   3      0.553 </code></pre>
+  Name    Test   Score
+  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;
+1 Tiddles 1      0.726
+2 Tiddles 2     -1.75 
+3 Tiddles 3      0.757
+4 Rover   1     -0.926
+5 Rover   2      0.258
+6 Rover   3     -0.484</code></pre>
 </div>
 </div>
 <p>For more details, see the <a href="https://tidyr.tidyverse.org/articles/pivot.html">pivot vignette</a>.</p>
